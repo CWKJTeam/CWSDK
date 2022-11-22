@@ -6,6 +6,9 @@
 //
 
 #import "A_promptHelp.h"
+#import "A_JHHelp.h"
+#define WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
+#define HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height
 @interface promptView : UIView
 
 

@@ -7,6 +7,7 @@
 
 #import "A_MJpromptHelp.h"
 #import "A_JHLabel.h"
+#define SIX_DIV  [UIScreen mainScreen ].bounds.size.height/375
 @interface MJpromptView : UIView
 
 

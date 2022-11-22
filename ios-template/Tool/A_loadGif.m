@@ -6,6 +6,7 @@
 //
 
 #import "A_loadGif.h"
+#import "UIView+A_Frame.h"
 @interface PlayerLoadingView : UIView
 
 @property(nonatomic,copy)NSString *C_nameStr;
