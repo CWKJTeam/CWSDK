@@ -4,9 +4,11 @@
 //
 //  Created by QPX on 2019/5/15.
 //
-
+#import "UIView+A_Frame.h"
+#import "UIImage+A_setImageStrName.h"
 #import "A_promptHelp.h"
 #import "A_JHHelp.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
 #define HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height
 @interface promptView : UIView

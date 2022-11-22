@@ -8,6 +8,8 @@
 #import "A_MJpromptHelp.h"
 #import "A_JHLabel.h"
 #define SIX_DIV  [UIScreen mainScreen ].bounds.size.height/375
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 @interface MJpromptView : UIView
 
 
