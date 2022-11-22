@@ -6,6 +6,7 @@
 //
 
 #import "UIButton+A_ClickAdd.h"
+#import "A_JHHelp.h"
 #import <objc/runtime.h>
 @implementation UIButton (A_ClickAdd)
 + (void)load{

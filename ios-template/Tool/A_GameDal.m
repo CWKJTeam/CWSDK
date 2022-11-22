@@ -8,7 +8,7 @@
 
 #import "A_GameDal.h"
 
-
+#import "A_AFNetworkingClient.h"
 
 
 @implementation A_GameDal

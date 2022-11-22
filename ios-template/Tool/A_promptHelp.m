@@ -8,6 +8,7 @@
 #import "UIImage+A_setImageStrName.h"
 #import "A_promptHelp.h"
 #import "A_JHHelp.h"
+#define IS_PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
 #define HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height

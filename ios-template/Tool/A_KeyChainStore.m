@@ -7,6 +7,7 @@
 //
 
 #import "A_KeyChainStore.h"
+#import "NSString+A_safeAssignment.h"
 #import <AdSupport/AdSupport.h>
 @implementation A_KeyChainStore
 + (NSMutableDictionary*)getKeychainQuery:(NSString*)C_service {
