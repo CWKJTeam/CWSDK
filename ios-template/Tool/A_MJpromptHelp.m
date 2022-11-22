@@ -7,8 +7,13 @@
 
 #import "A_MJpromptHelp.h"
 #import "A_JHLabel.h"
+#import "UIView+A_Frame.h"
+#define IPAD_BETWEENS 300
 #define SIX_DIV  [UIScreen mainScreen ].bounds.size.height/375
+#define IS_PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
+#define HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height
 
 @interface MJpromptView : UIView
 

@@ -16,14 +16,14 @@ Pod::Spec.new do |spec|
   spec.author             = { "xiaojiabao" => "xiaojiabao@bianfeng.com" }
   # spec.social_media_url   = "https://twitter.com/xiaojiabao"
 
-
-  spec.platform     = :ios, "10.0"
+  spec.ios.deployment_target = '10.0'
+ # spec.platform     = :ios, "10.0"
 
   spec.source       = { :git => "https://github.com/CWKJTeam/CWSDK.git", :tag => "#{spec.version}" }
 
 
   spec.source_files  = "ios-template/Tool/*.{h,m}"
-
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
   # spec.frameworks = "SomeFramework", "AnotherFramework"
   # spec.libraries = "iconv", "xml2"
   spec.dependency 'SDWebImage', '~> 5.12.1'
