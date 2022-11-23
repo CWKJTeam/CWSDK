@@ -46,7 +46,10 @@ Pod::Spec.new do |spec|
   spec.dependency 'SDWebImage', '~> 5.12.1'
   spec.dependency 'MBProgressHUD', '0.9.1'
   spec.dependency 'CocoaHTTPServer', '~> 2.3'
-  spec.dependency 'AFNetworking', '~> 3.1.0'
+  spec.dependency 'AFNetworking/Reachability', '~> 3.1.0'
+  spec.dependency 'AFNetworking/Serialization', '~> 3.1.0'
+  spec.dependency 'AFNetworking/Security', '~> 3.1.0'
+  spec.dependency 'AFNetworking/NSURLSession', '~> 3.1.0'
 
 
 end
