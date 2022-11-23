@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "CWTool"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "CW工具库"
 
 
@@ -23,6 +23,16 @@ Pod::Spec.new do |spec|
 
 
   spec.source_files  = "Tool/**/*.{h,m}"
+
+#--------文件分级---------------#
+spec.subspec 'ClassCategory' do |ss|
+  ss.source_files = 'Tool/ClassCategory/*'
+spec.subspec 'TYDownloadManager' do |ss|
+  ss.source_files = 'Tool/TYDownloadManager/*'
+spec.subspec 'WebServer' do |ss|
+  ss.source_files = 'Tool/WebServer/*'
+#--------文件分级---------------#
+
   spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
 
   # spec.frameworks = "SomeFramework", "AnotherFramework"

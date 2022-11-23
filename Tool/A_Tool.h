@@ -8,7 +8,6 @@
 
 #ifndef A_Tool_h
 #define A_Tool_h
-
 #import "UIViewController+A_Utility.h"
 #import "UIWindow+A_Utility.h"
 #import "UIView+A_Frame.h"
