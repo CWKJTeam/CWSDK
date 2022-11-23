@@ -354,6 +354,7 @@
 		306A7A84200C83F500E1EBB6 = {
 			isa = PBXGroup;
 			children = (
+				6C75EC16275DC23500953C0A /* Tool */,
 				5FB4D0722852EAF100601425 /* GoldenDragon(i_1).entitlements */,
 				6C6F6A5C283FAC3C00D41909 /* UltraMonster(i_1)Debug.entitlements */,
 				6CE6E8DD281BEAAB00C07D79 /* GoogleService-Info.plist */,
@@ -378,7 +379,6 @@
 			children = (
 				6C75EC3A275DC2CE00953C0A /* ProjectA */,
 				6C7BE07127608FAA003C8187 /* ProjectB */,
-				6C75EC16275DC23500953C0A /* Tool */,
 				EDF3B7E424580A4B009DFBBD /* LaunchScreen.storyboard */,
 				306A7A93200C83F500E1EBB6 /* AppDelegate.h */,
 				306A7A94200C83F500E1EBB6 /* AppDelegate.m */,
