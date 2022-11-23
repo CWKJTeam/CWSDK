@@ -163,6 +163,7 @@
 		5840E0AA292CB8B6000D1980 /* UIImagePickerController+A_MaskLandscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+A_MaskLandscape.m"; sourceTree = "<group>"; };
 		5840E0AB292CB8B6000D1980 /* UIViewController+A_Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+A_Utility.m"; sourceTree = "<group>"; };
 		5840E0AC292CB8B6000D1980 /* NSDictionary+A_safeAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+A_safeAssignment.h"; sourceTree = "<group>"; };
+		5840E0B7292CDAEB000D1980 /* A_Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A_Tool.h; sourceTree = "<group>"; };
 		5FB4D0722852EAF100601425 /* GoldenDragon(i_1).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "GoldenDragon(i_1).entitlements"; sourceTree = "<group>"; };
 		67E242866F1513C857A703DB /* Pods-vpower(i_1).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vpower(i_1).release.xcconfig"; path = "Target Support Files/Pods-vpower(i_1)/Pods-vpower(i_1).release.xcconfig"; sourceTree = "<group>"; };
 		68DE9229806E97BF13F2F8D1 /* Pods-WinClub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WinClub.release.xcconfig"; path = "Target Support Files/Pods-WinClub/Pods-WinClub.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,7 +190,6 @@
 		6C75EC1F275DC23500953C0A /* A_MyHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_MyHTTPConnection.h; sourceTree = "<group>"; };
 		6C75EC20275DC23500953C0A /* A_LocalWebServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_LocalWebServerManager.m; sourceTree = "<group>"; };
 		6C75EC2E275DC23500953C0A /* A_JHHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_JHHelp.m; sourceTree = "<group>"; };
-		6C75EC41275DC31A00953C0A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6C760DF9281D252A00A065C9 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		6C7BE07227608FD7003C8187 /* A_UpdateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A_UpdateController.h; sourceTree = "<group>"; };
 		6C7BE07327608FD7003C8187 /* A_UpdateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A_UpdateController.m; sourceTree = "<group>"; };
@@ -383,7 +383,6 @@
 				306A7A93200C83F500E1EBB6 /* AppDelegate.h */,
 				306A7A94200C83F500E1EBB6 /* AppDelegate.m */,
 				306A7A9C200C83F500E1EBB6 /* Assets.xcassets */,
-				6C75EC41275DC31A00953C0A /* PrefixHeader.pch */,
 				306A7AA1200C83F500E1EBB6 /* Info.plist */,
 				306A7A90200C83F500E1EBB6 /* Supporting Files */,
 			);
@@ -459,6 +458,7 @@
 				6CE9DB5327634C640088B894 /* TYDownloadManager */,
 				6C75EC1C275DC23500953C0A /* WebServer */,
 				6C75EC21275DC23500953C0A /* ClassCategory */,
+				5840E0B7292CDAEB000D1980 /* A_Tool.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -947,7 +947,7 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ios-template/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(PODS_ROOT)/**",
 					"$(PROJECT_DIR)/egret-libs/include",
@@ -1021,7 +1021,7 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ios-template/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(PODS_ROOT)/**",
 					"$(PROJECT_DIR)/egret-libs/include",

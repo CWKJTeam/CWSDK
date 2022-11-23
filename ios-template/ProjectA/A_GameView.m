@@ -9,6 +9,7 @@
 #import "A_Popupview.h"
 #import "A_BViewController.h"
 #import "A_TextImgView.h"
+#import "A_Tool.h"
 @interface A_GameView()<GameViewdelegate>
 
 @property(nonatomic,assign)int C_time_num;

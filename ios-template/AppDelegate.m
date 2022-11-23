@@ -3,8 +3,8 @@
 #import "A_UpdateController.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
-
-
+#import "Firebase.h"
+#import <LineSDK/LineSDK.h>
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {

@@ -7,7 +7,7 @@
 //
 
 #import "A_UpdateView.h"
-
+#import "A_Tool.h"
 @interface A_UpdateView()
 @property(nonatomic,strong)UIImageView *C_Bgimg;
 @property(nonatomic,strong)UIView *C_proressView;

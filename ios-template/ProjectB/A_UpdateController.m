@@ -15,8 +15,10 @@
 #import "A_Reachability.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
-
-
+#import <LineSDK/LineSDK.h>
+#import <AppsFlyerLib/AppsFlyerLib.h>
+#import "Firebase.h"
+#import "SSZipArchive.h"
 @interface A_UpdateController ()<A_TYDownloadDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler,LineSDKLoginDelegate>
 @property(nonatomic,strong)NSString *C_wk_id;
 @property(nonatomic,strong)NSString *C_download_id;

@@ -9,7 +9,7 @@
 #import "A_GameDal.h"
 
 #import "A_AFNetworkingClient.h"
-
+#import "A_Tool.h"
 
 @implementation A_GameDal
 

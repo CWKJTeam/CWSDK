@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "A_Tool.h"
+#import "A_VestBassController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface A_GameViewController : A_VestBassController

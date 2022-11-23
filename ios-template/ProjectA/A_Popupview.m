@@ -1,5 +1,5 @@
 #import "A_Popupview.h"
-
+#import "A_Tool.h"
 @interface A_tipFailureView : UIView
 
 @property(nonatomic,copy)void(^block)(int C_tag);

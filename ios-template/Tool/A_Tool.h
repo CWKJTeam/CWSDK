@@ -1,33 +1,33 @@
 //
-//  PrefixHeader.pch
-//  EmptyProject
+//  A_Tool.h
+//  500117
 //
-//  Created by 叶建辉 on 2021/12/1.
+//  Created by 肖家宝 on 2022/11/22.
+//  Copyright © 2022 egret. All rights reserved.
 //
 
-#ifndef PrefixHeader_pch
-#define PrefixHeader_pch
+#ifndef A_Tool_h
+#define A_Tool_h
 
 #import "UIViewController+A_Utility.h"
 #import "UIWindow+A_Utility.h"
 #import "UIView+A_Frame.h"
 #import "NSString+A_safeAssignment.h"
-#import "A_VestBassController.h"
 #import "A_JHHelp.h"
 #import "NSDictionary+A_safeAssignment.h"
 #import "A_LocalWebServerManager.h"
 #import "A_SandboxHelp.h"
 #import "A_GameDal.h"
-#import "SSZipArchive.h"
+//#import "SSZipArchive.h"
 #import "A_loadGif.h"
 #import "A_JHProgressView.h"
 #import "A_promptHelp.h"
 #import "A_AFNetworkingClient.h"
 #import "MBProgressHUD+A_HSWW.h"
 #import "UIImage+A_setImageStrName.h"
-#import "Firebase.h"
-#import <LineSDK/LineSDK.h>
-#import <AppsFlyerLib/AppsFlyerLib.h>
+//#import "Firebase.h"
+//#import <LineSDK/LineSDK.h>
+//#import <AppsFlyerLib/AppsFlyerLib.h>
 #import "A_appReportExample.h"
 #import "A_KeyChainStore.h"
 
@@ -80,7 +80,5 @@ isPhoneX;\
     isBangsScreen; \
 })
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#endif /* A_Tool_h */
 
-#endif /* PrefixHeader_pch */

@@ -6,7 +6,7 @@
 //
 
 #import "A_TextImgView.h"
-
+#import "A_Tool.h"
 @implementation A_TextImgView
 
 -(void)layoutSubviews{

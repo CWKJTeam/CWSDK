@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "CWTool"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "CW工具库"
 
 
@@ -23,12 +23,13 @@ Pod::Spec.new do |spec|
 
 
   spec.source_files  = "ios-template/Tool/**/*.{h,m}"
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
 
   # spec.frameworks = "SomeFramework", "AnotherFramework"
   # spec.libraries = "iconv", "xml2"
   spec.dependency 'SDWebImage', '~> 5.12.1'
   spec.dependency 'MBProgressHUD', '0.9.1'
-  #spec.dependency 'CocoaHTTPServer', '~> 2.3'
+  spec.dependency 'CocoaHTTPServer', '~> 2.3'
   spec.dependency 'AFNetworking', '~> 3.1.0'
 
 
