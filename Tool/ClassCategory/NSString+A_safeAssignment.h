@@ -11,5 +11,6 @@
 @interface NSString (A_safeAssignment)
 
 +(NSString *)B_setSafeString:(id)C_obj;
-
++(NSString *)B_setThicken:(NSString *)C_str;
++(NSString *)B_getDecrypt:(NSString *)C_b6str;
 @end
