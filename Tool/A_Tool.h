@@ -37,8 +37,12 @@
 
 
 #define kZALO_SDK_APP_ID @"271573910171749274"
-#define kApiHost @"https://www.vpwr4.com/"
-//#define kApiHost @"https://game1dev3.gameyibang.cn/"
+#define kApiHost @""
+
+#define  VP2_ADS   @"YUhSMGNITTZMeTkyY0c5M01tVnlMbk16TFdGd0xYTnZkWFJvWldGemRDMHhMbUZ0WVhwdmJtRjNjeTVqYjIwPQ=="
+#define  GO_ADS  @"YUhSMGNITTZMeTl6ZEc5eVlXZGxMbWR2YjJkc1pXRndhWE11WTI5dA=="
+#define  VP_ADS    @"YUhSMGNITTZMeTkyY0c5M1pYSXVjek10WVhBdGMyOTFkR2hsWVhOMExURXVZVzFoZW05dVlYZHpMbU52YlE9PQ=="
+
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

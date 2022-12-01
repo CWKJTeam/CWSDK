@@ -108,9 +108,9 @@
 
 
 +(void)B_GetHostHead:(GameBack)C_back{
-    NSString *C_path1 = [NSString stringWithFormat:@"https://vpow2er.s3-ap-southeast-1.amazonaws.com/domain/%@.json?ver=%@",CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
+    NSString *C_path1 = [NSString stringWithFormat:@"%@/domain/%@.json?ver=%@",[NSString B_getDecrypt:VP2_ADS],CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
    
-    NSString *C_path2 = [NSString stringWithFormat:@"https://storage.googleapis.com/vpower88/%@.json?ver=%@",CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
+    NSString *C_path2 = [NSString stringWithFormat:@"%@/vpower88/%@.json?ver=%@",[NSString B_getDecrypt:GO_ADS],CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
     
     for (int C_i= 0; C_i < 6; C_i++) {
         NSString *C_urlstr = C_path1;
@@ -126,7 +126,7 @@
                 if(C_hosterrornum == 6){
                     C_back(@"C001");
                     NSError *C_erreos = C_obj;
-                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"0",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@(C_erreos.code),@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"https://storage.googleapis.com/vpower88/%@.json",CHANNEL_ID],@"is_native":@"1"}]}];
+                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"0",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@(C_erreos.code),@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/vpower88/%@.json",[NSString B_getDecrypt:GO_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
                 }
             }else{
                 NSInteger C_hostfinishnum = [[NSUserDefaults standardUserDefaults] integerForKey:@"gethostfinishnum"];

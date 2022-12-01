@@ -856,7 +856,7 @@
                                 //c002
                                 [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                                     NSLog(@"`~~~%d",C_tag);
-                                    [[A_appReportExample B_sharedInstance].C_apithrees addObject:@{@"time_diff":@"0",@"event":@"12",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"https://vpower.s3-ap-southeast-1.amazonaws.com/domain/%@.json",CHANNEL_ID],@"is_native":@"1"}]}];
+                                    [[A_appReportExample B_sharedInstance].C_apithrees addObject:@{@"time_diff":@"0",@"event":@"12",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
                                     
                                     [self B_cheakUp];
                                 } animated:NO];
@@ -867,7 +867,7 @@
                         
                         [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                             NSLog(@"`~~~%d",C_tag);
-                            [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"11",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"https://vpower.s3-ap-southeast-1.amazonaws.com/domain/%@.json",CHANNEL_ID],@"is_native":@"1"}]}];
+                            [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"11",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
                             [self B_cheakUp];
                         } animated:NO];
                     }
@@ -876,7 +876,7 @@
                 //c001
                 [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                     NSLog(@"`~~~%d",C_tag);
-                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"https://vpower.s3-ap-southeast-1.amazonaws.com/domain/%@.json",CHANNEL_ID],@"is_native":@"1"}]}];
+                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
                     
                     
                     [self B_cheakUp];
