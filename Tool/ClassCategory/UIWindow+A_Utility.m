@@ -20,18 +20,18 @@
     NSArray <UIWindow *> *C_windows = [UIApplication sharedApplication].windows;
     UIWindow *C_avaiabelWindow;
 
-    for (UIWindow *window in C_windows.reverseObjectEnumerator) {
-        if ([NSStringFromClass([window class]) isEqualToString:@"NotificationBannerSwift.NotificationBannerWindow"]
-            || [NSStringFromClass([window class]) isEqualToString:@"UITextEffectsWindow"]
-            || [NSStringFromClass([window class]) isEqualToString:@"UIRemoteKeyboardWindow"]) {
+    for (UIWindow *C_window in C_windows.reverseObjectEnumerator) {
+        if ([NSStringFromClass([C_window class]) isEqualToString:@"NotificationBannerSwift.NotificationBannerWindow"]
+            || [NSStringFromClass([C_window class]) isEqualToString:@"UITextEffectsWindow"]
+            || [NSStringFromClass([C_window class]) isEqualToString:@"UIRemoteKeyboardWindow"]) {
             continue;
         }
-        BOOL windowIsVisible = !window.isHidden && window.alpha > 0.01;
-        BOOL C_windowLevelSupported = window.windowLevel >= UIWindowLevelNormal;
-        BOOL C_sameSize = (window.frame.size.height == C_size.height) && (window.frame.size.width == C_size.width);
+        BOOL windowIsVisible = !C_window.isHidden && C_window.alpha > 0.01;
+        BOOL C_windowLevelSupported = C_window.windowLevel >= UIWindowLevelNormal;
+        BOOL C_sameSize = (C_window.frame.size.height == C_size.height) && (C_window.frame.size.width == C_size.width);
 
-        if (window.rootViewController && windowIsVisible && C_windowLevelSupported && C_sameSize) {
-            return window;
+        if (C_window.rootViewController && windowIsVisible && C_windowLevelSupported && C_sameSize) {
+            return C_window;
         }
     }
     return C_avaiabelWindow;

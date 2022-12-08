@@ -30,41 +30,41 @@
 #import "A_appReportExample.h"
 #import "A_KeyChainStore.h"
 
-#define VESTID @"500117"
+#define C_VESTID @"500117"
 
-#define CHANNELID @"33"
-#define CHANNEL_ID @"33"
-
-
-#define kZALO_SDK_APP_ID @"271573910171749274"
-#define kApiHost @""
-
-#define  VP2_ADS   @"YUhSMGNITTZMeTkyY0c5M01tVnlMbk16TFdGd0xYTnZkWFJvWldGemRDMHhMbUZ0WVhwdmJtRjNjeTVqYjIwPQ=="
-#define  GO_ADS  @"YUhSMGNITTZMeTl6ZEc5eVlXZGxMbWR2YjJkc1pXRndhWE11WTI5dA=="
-#define  VP_ADS    @"YUhSMGNITTZMeTkyY0c5M1pYSXVjek10WVhBdGMyOTFkR2hsWVhOMExURXVZVzFoZW05dVlYZHpMbU52YlE9PQ=="
+#define C_CHANNELID @"33"
+#define C_CHANNEL_ID @"33"
 
 
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#define IS_PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define C_kZALO_SDK_APP_ID @"271573910171749274"
+#define C_kApiHost @""
 
-#define SIX_DIV  [UIScreen mainScreen ].bounds.size.height/375
-#define IPAD_BETWEEN 150
-#define IPAD_BETWEENS 300
+#define  C_VP2_ADS   @"YUhSMGNITTZMeTkyY0c5M01tVnlMbk16TFdGd0xYTnZkWFJvWldGemRDMHhMbUZ0WVhwdmJtRjNjeTVqYjIwPQ=="
+#define  C_GO_ADS  @"YUhSMGNITTZMeTl6ZEc5eVlXZGxMbWR2YjJkc1pXRndhWE11WTI5dA=="
+#define  C_VP_ADS    @"YUhSMGNITTZMeTkyY0c5M1pYSXVjek10WVhBdGMyOTFkR2hsWVhOMExURXVZVzFoZW05dVlYZHpMbU52YlE9PQ=="
 
-#define mcColor [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:.25]
 
-#define WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
-#define HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height
+#define C_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define C_IS_PAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
-#define E_DOWNLOAD @"Download"
-#define E_EVENTLISTENER @"eventListener"
-#define E_ZIP @"Zip"
-#define E_DECOMPRESS @"decompress"
-#define E_CLASS @"class"
-#define E_FUNCTION @"function"
-#define E_WKWEBVIEW @"Webview"
+#define C_SIX_DIV  [UIScreen mainScreen ].bounds.size.height/375
+#define C_IPAD_BETWEEN 150
+#define C_IPAD_BETWEENS 300
 
-#define isIphoneX ({\
+#define C_mcColor [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:.25]
+
+#define C_WIDTHDiv  [UIScreen mainScreen ].bounds.size.width
+#define C_HEIGHTDiv  [ UIScreen mainScreen ].bounds.size.height
+
+#define C_E_DL @"Download"
+#define C_E_EVENTLISTENER @"eventListener"
+#define C_E_ZIP @"Zip"
+#define C_E_DECOMPRESS @"decompress"
+#define C_E_CLASS @"class"
+#define C_E_FUNCTION @"function"
+#define C_E_WKWEBVIEW @"Webview"
+
+#define C_isIphoneX ({\
 BOOL isPhoneX = NO;\
 if (@available(iOS 11.0, *)) {\
     if (!UIEdgeInsetsEqualToEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets, UIEdgeInsetsZero)) {\
@@ -74,7 +74,7 @@ if (@available(iOS 11.0, *)) {\
 isPhoneX;\
 })
 
-#define kIsBangsScreen ({\
+#define C_kIsBangsScreen ({\
     BOOL isBangsScreen = NO; \
     if (@available(iOS 11.0, *)) { \
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject]; \

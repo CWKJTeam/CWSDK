@@ -67,7 +67,7 @@
 //        [configuration.userContentController addScriptMessageHandler:self name:@"JsToNative"];
         
         [C_configuration.userContentController addScriptMessageHandler:[[A_QYWeakScriptMessageHandlerDelegate alloc] B_initWithDelegate:self] name:@"JsToNative"];
-        _C_wkWebView = [[WKWebView alloc] initWithFrame:_C_isClose?CGRectMake(0, 40, WIDTHDiv, HEIGHTDiv-40):CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv)
+        _C_wkWebView = [[WKWebView alloc] initWithFrame:_C_isClose?CGRectMake(0, 40, C_WIDTHDiv, C_HEIGHTDiv-40):CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv)
                                         configuration:C_configuration];
         _C_wkWebView.navigationDelegate = self;
         _C_wkWebView.UIDelegate = self;
@@ -86,7 +86,7 @@
             C_lab.textColor = [UIColor blackColor];
             [self.view addSubview:C_lab];
             C_back.frame = CGRectMake(10, 5, 30, 30);
-            C_lab.frame = CGRectMake(0, 5, WIDTHDiv, 30);
+            C_lab.frame = CGRectMake(0, 5, C_WIDTHDiv, 30);
             C_lab.font = [UIFont boldSystemFontOfSize:22];
         }
     }
@@ -96,7 +96,7 @@
 -(void)B_backClick{
     [self dismissViewControllerAnimated:NO completion:^{
     }];
-    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
+    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
 }
 
 - (void)B_loadLocalRequest{
@@ -132,7 +132,7 @@
         NSLog(@"%@",C_message.body);
 //        [self jsToNative:message.body];
         NSDictionary *C_dic = [A_JHHelp B_dictionaryWithJsonString:C_message.body];
-        if([[NSString B_setSafeString:C_dic[E_FUNCTION]] isEqualToString:@"hide"]){
+        if([[NSString B_setSafeString:C_dic[C_E_FUNCTION]] isEqualToString:@"hide"]){
             AppDelegate *C_appd = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             C_appd.isverScreen = NO;
             
@@ -168,9 +168,9 @@
                 [self dismissViewControllerAnimated:NO completion:^{
                 }];
             }
-            [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"hide"}];
+            [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"hide"}];
         }
-        else if([[NSString B_setSafeString:C_dic[E_FUNCTION]] isEqualToString:@"close"]){
+        else if([[NSString B_setSafeString:C_dic[C_E_FUNCTION]] isEqualToString:@"close"]){
             AppDelegate *C_appd = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             C_appd.isverScreen = NO;
             
@@ -198,7 +198,7 @@
                 }];
             }
             
-            [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
+            [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
         }
     }
 }
@@ -206,16 +206,16 @@
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     UIWindow *C_window = [UIApplication sharedApplication].keyWindow;
-    _C_wkWebView.frame = _C_isClose?CGRectMake(0, 40, WIDTHDiv, HEIGHTDiv-40):CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
+    _C_wkWebView.frame = _C_isClose?CGRectMake(0, 40, C_WIDTHDiv, C_HEIGHTDiv-40):CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
     
     UIImageView *C_img_ = [C_window viewWithTag:567];
-    C_img_.frame = CGRectMake(0, 0, WIDTHDiv,HEIGHTDiv);
+    C_img_.frame = CGRectMake(0, 0, C_WIDTHDiv,C_HEIGHTDiv);
     
     
     UIButton *C_back = [self.view viewWithTag:10087];
     C_back.frame = CGRectMake(10, 5, 30, 30);
     UILabel *C_lab = [self.view viewWithTag:10086];
-    C_lab.frame = CGRectMake(0, 5, WIDTHDiv, 30);
+    C_lab.frame = CGRectMake(0, 5, C_WIDTHDiv, 30);
 }
 
 #pragma mark - WKNavigationDelegate
@@ -254,7 +254,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)C_challenge
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)C_webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)C_navigation withError:(NSError *)C_error {
-    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
+    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)C_webView didCommitNavigation:(WKNavigation *)C_navigation {
@@ -266,12 +266,12 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)C_challenge
     C_lab.text = C_webView.title;
     
     if(![C_webView.URL.absoluteString isEqualToString:@"about:blank"]){
-        [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":[NSString B_setSafeString:_C_wk_id],@"event":@"loaded"}];
+        [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":[NSString B_setSafeString:_C_wk_id],@"event":@"loaded"}];
     }
 }
 //提交发生错误时调用
 - (void)webView:(WKWebView *)C_webView didFailNavigation:(WKNavigation *)C_navigation withError:(NSError *)C_error {
-    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
+    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
 }
 // 接收到服务器跳转请求即服务重定向时之后调用
 - (void)webView:(WKWebView *)C_webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)C_navigation {

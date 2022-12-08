@@ -21,9 +21,9 @@
 @property (nonatomic , assign) CGFloat C_centerY;     ///< Shortcut for center.y
 @property (nonatomic , assign) CGPoint C_origin;      ///< Shortcut for frame.origin.
 @property (nonatomic , assign) CGSize  C_size;        ///< Shortcut for frame.size.
-+ (instancetype)viewFromXib;
++ (instancetype)B_viewFromXib;
 /** 判断一个控件是否真正显示在主窗口 */
--(BOOL)isShowIngOnKeyWindow;
+-(BOOL)B_isShowIngOnKeyWindow;
 
 
 

@@ -61,7 +61,7 @@
 //    [AFNetworkingClient setHeader:manager fullUrl:fullUrl];
 //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [manager GET:fullUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:fullUrl parameters:nil progress:^(NSProgress * _Nonnull DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];

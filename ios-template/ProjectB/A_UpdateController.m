@@ -10,8 +10,8 @@
 //#import "GoldenDragon(i_1)-Swift.h"
 #import "A_UpdateView.h"
 #import "A_CustomerController.h"
-#import "A_TYDownLoadDataManager.h"
-#import "A_TYDownloadUtility.h"
+#import "A_TYDLDataManager.h"
+#import "A_TYDLUtility.h"
 #import "A_Reachability.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
@@ -19,15 +19,15 @@
 #import <AppsFlyerLib/AppsFlyerLib.h>
 #import "Firebase.h"
 #import "SSZipArchive.h"
-@interface A_UpdateController ()<A_TYDownloadDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler,LineSDKLoginDelegate>
+@interface A_UpdateController ()<A_TYDLDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler,LineSDKLoginDelegate>
 @property(nonatomic,strong)NSString *C_wk_id;
-@property(nonatomic,strong)NSString *C_download_id;
+@property(nonatomic,strong)NSString *C_DL_id;
 @property(nonatomic,strong)NSString *C_zip_id;
 @property(nonatomic,strong)WKWebView *C_wkView;
 @property(nonatomic,strong)WKWebView *C_httpswkView;
 @property(nonatomic,strong)A_UpdateView *C_dView;
 @property(nonatomic,strong)NSString *C_WebDirectory;
-@property(nonatomic,strong)NSMutableDictionary *C_nonDownLoads;
+@property(nonatomic,strong)NSMutableDictionary *C_nonDLs;
 @property(nonatomic,assign)BOOL C_appUpdateStatus;
 @property(nonatomic,copy)NSString *C_getconfigStr;
 @property(nonatomic,copy)NSString *C_appReportApi;
@@ -52,19 +52,19 @@
     C_config.userContentController = C_userContentController;
     NSString *C_webgljs = @"var canvas = document.createElement('canvas'); var gl = canvas.getContext('webgl'); var exts = gl.getSupportedExtensions(); window.webkit.messageHandlers.WebGLJsObect.postMessage(exts);";
     //3、通过初试化方法，生成webview对象并完成配置
-    self.C_wkView2 = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv) configuration:C_config];
+    self.C_wkView2 = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv) configuration:C_config];
     [self.C_wkView2 evaluateJavaScript:C_webgljs completionHandler:^(id _Nullable C_result, NSError * _Nullable C_error) {
         self.C_wkView2 = nil; // 销毁
     }];
 }
 
 // 更新下载进度
-- (void)downloadModel:(A_TYDownloadModel *)downloadModel didUpdateProgress:(TYDownloadProgress *)progress{
+- (void)DLModel:(A_TYDLModel *)DLModel didUpdateProgress:(TYDLProgress *)progress{
     
 }
 
 // 更新下载状态
-- (void)downloadModel:(A_TYDownloadModel *)downloadModel didChangeState:(TYDownloadState)state filePath:(NSString *)filePath error:(NSError *)error{
+- (void)DLModel:(A_TYDLModel *)DLModel didChangeState:(TYDLState)state filePath:(NSString *)filePath error:(NSError *)error{
     
 }
 
@@ -90,8 +90,8 @@
     NSDictionary *C_dic = [A_JHHelp B_dictionaryWithJsonString:msg];
     NSLog(@"子类~~~%@",C_dic);
     
-    if([C_dic[E_CLASS] isEqualToString:@"Line"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"login"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"Line"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"login"]){
             
             LineSDKAPI *C_apl = [[LineSDKAPI alloc]initWithConfiguration: [LineSDKConfiguration defaultConfig]];
             [C_apl verifyTokenWithCompletion:^(LineSDKVerifyResult * _Nullable C_result, NSError * _Nullable C_error) {
@@ -105,7 +105,7 @@
                 }
             }];
         }
-        if ([C_dic[E_FUNCTION] isEqualToString:@"logout"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"logout"]){
             
         }
     }
@@ -114,20 +114,20 @@
     
     
     
-    if ([C_dic[E_CLASS] isEqualToString:E_DOWNLOAD]) {
-        [self B_jsToNativeWithDownload:C_dic];
+    if ([C_dic[C_E_CLASS] isEqualToString:C_E_DL]) {
+        [self B_jsToNativeWithDL:C_dic];
     }
-    if([C_dic[E_CLASS] isEqualToString:E_WKWEBVIEW]){
+    if([C_dic[C_E_CLASS] isEqualToString:C_E_WKWEBVIEW]){
         [self B_jsToNativeWithWebView:C_dic];
     }
-    if([C_dic[E_CLASS] isEqualToString:E_ZIP]){
+    if([C_dic[C_E_CLASS] isEqualToString:C_E_ZIP]){
         [self B_jsToNativeWithZip:C_dic];
     }
-    if([C_dic[E_CLASS] isEqualToString:@"Runtime"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"closeSplashscreen"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"Runtime"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"closeSplashscreen"]){
             _C_dView.hidden = YES;
         }
-        if ([C_dic[E_FUNCTION] isEqualToString:@"openURL"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"openURL"]){
             NSString *C_a = C_dic[@"args"][@"url"];
             if (C_a.length!=0&&C_a) {
                 NSURL *C_URL = [NSURL URLWithString:C_a];
@@ -136,7 +136,7 @@
                 }];
             }
         }
-        if ([C_dic[E_FUNCTION] isEqualToString:@"launchApplication"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"launchApplication"]){
             NSString *C_a = C_dic[@"args"][@"appInf"][@"action"];
             if (C_a.length!=0&&C_a) {
                  NSString *C_url = [NSString stringWithFormat:@"%@",C_a];
@@ -158,16 +158,16 @@
         }
     }
     
-    if([C_dic[E_CLASS] isEqualToString:@"Device"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"setClipboard"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"Device"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"setClipboard"]){
             NSString *C_a = C_dic[@"args"][@"text"];
             UIPasteboard *C_pasteboard = [UIPasteboard generalPasteboard];
             [C_pasteboard setString:C_a];
         }
     }
     
-    if([C_dic[E_CLASS] isEqualToString:@"SDKLog"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"logEvent"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"SDKLog"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"logEvent"]){
             NSString *C_a = C_dic[@"args"][@"event"];
             NSLog(@"a~~~~~>>%@",C_a);
             [[AppsFlyerLib shared] logEvent:[NSString B_setSafeString:C_a] withValues:nil];
@@ -178,8 +178,8 @@
         }
     }
     
-    if([C_dic[E_CLASS] isEqualToString:@"Screen"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"lockOrientation"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"Screen"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"lockOrientation"]){
             NSString *C_a = C_dic[@"args"][@"orientation"];
             if ([C_a hasPrefix:@"portrait"]) {
                 AppDelegate *C_appd = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -189,7 +189,7 @@
                 C_appd.isverScreen = NO;
             }
         }
-        if ([C_dic[E_FUNCTION] isEqualToString:@"getOrientationChange"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"getOrientationChange"]){
             UIInterfaceOrientation C_interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
             if (C_interfaceOrientation == UIInterfaceOrientationPortrait) {
                 [self B_toJsonc:@"Screen" B_f:@"OrientationChange" B_d:@{@"orientation":@"portrait-primary"}];
@@ -203,8 +203,8 @@
         }
     }
     
-    if([C_dic[E_CLASS] isEqualToString:@"Storage"]){
-        if ([C_dic[E_FUNCTION] isEqualToString:@"setItem"]){
+    if([C_dic[C_E_CLASS] isEqualToString:@"Storage"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"setItem"]){
             NSString *C_a = [NSString B_setSafeString:C_dic[@"args"][@"key"]];
             NSString *C_b = [NSString B_setSafeString:C_dic[@"args"][@"value"]];
             
@@ -218,20 +218,20 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self B_toJsonc:@"Storage" B_f:@"setItem" B_d:@{@"key":C_a,@"value":C_b}];
         }
-        if ([C_dic[E_FUNCTION] isEqualToString:@"setClipboard"]){
+        if ([C_dic[C_E_FUNCTION] isEqualToString:@"setClipboard"]){
             NSString *C_a = C_dic[@"args"][@"text"];
             UIPasteboard *C_pasteboard = [UIPasteboard generalPasteboard];
             [C_pasteboard setString:C_a];
         }
     }
 }
--(void)B_jsToNativeWithDownload:(NSDictionary *)C_dic{
-    _C_download_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
-    if ([C_dic[E_FUNCTION] isEqualToString:@"createDownload"]){
+-(void)B_jsToNativeWithDL:(NSDictionary *)C_dic{
+    _C_DL_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
+    if ([C_dic[C_E_FUNCTION] isEqualToString:@"createDownload"]){
         if ([A_JHHelp B_determineNetwork] != 0) {
-            [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"1",@"downloadedSize":@(0)}];
+            [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"1",@"downloadedSize":@(0)}];
         }else{
-            [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"undefined",@"downloadedSize":@(0)}];
+            [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"undefined",@"downloadedSize":@(0)}];
         }
         
         __block BOOL C_isStart = YES;
@@ -252,53 +252,53 @@
         
         NSString *C_modelUrl = [NSString B_setSafeString:C_dic[@"args"][@"url"]];
         C_modelUrl = [[C_modelUrl componentsSeparatedByString:@"?"] firstObject];
-        A_TYDownloadModel *C_model = [[A_TYDownloadModel alloc]initWithURLString:C_modelUrl filePath:C_testDirectory];
-        [_C_nonDownLoads setValue:C_model forKey:C_task_id];
-        A_TYDownLoadDataManager *C_manager = [A_TYDownLoadDataManager manager];
-        if ([C_manager isDownloadCompletedWithDownloadModel:C_model]) {
-            [C_manager deleteFileWithDownloadModel:_C_nonDownLoads[C_task_id]];
-            NSLog(@"downloadingModels->%@",C_manager.C_downloadingModels);
-//            [manager.downloadingModels removeAllObjects];
+        A_TYDLModel *C_model = [[A_TYDLModel alloc] B_initWithURLString:C_modelUrl filePath:C_testDirectory];
+        [_C_nonDLs setValue:C_model forKey:C_task_id];
+        A_TYDLDataManager *C_manager = [A_TYDLDataManager B_manager];
+        if ([C_manager B_isDLCompletedWithDLModel:C_model]) {
+            [C_manager B_deleteFileWithDLModel:_C_nonDLs[C_task_id]];
+            NSLog(@"DLingModels->%@",C_manager.C_DLingModels);
+//            [manager.DLingModels removeAllObjects];
         }
-//        NSLog(@"%@",[manager isDownloadCompletedWithDownloadModel:model]?@"已经下载过了~":@"没有下载过~");
+//        NSLog(@"%@",[manager isDLCompletedWithDLModel:model]?@"已经下载过了~":@"没有下载过~");
         
-        [C_manager startWithDownloadModel:_C_nonDownLoads[C_task_id] progress:^(TYDownloadProgress *C_progress) {
-            NSLog(@"progress->>%lf",C_progress.progress);
+        [C_manager B_startWithDLModel:_C_nonDLs[C_task_id] progress:^(TYDLProgress *C_progress) {
+            NSLog(@"progress->>%lf",C_progress.C_progress);
             if (C_isStart) {
                 C_isStart = NO;
-                [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"2",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
+                [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"2",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
             }
-            [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"3",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
-        } state:^(TYDownloadState C_state, NSString *C_filePath, NSError *C_error) {
-            if (C_state == TYDownloadStateCompleted) {
-                [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"4",@"status":@"200"}];
-            }else if (C_state == TYDownloadStateSuspended){
-                [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"5"}];
+            [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"3",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
+        } state:^(TYDLState C_state, NSString *C_filePath, NSError *C_error) {
+            if (C_state == C_TYDLStateCompleted) {
+                [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"4",@"status":@"200"}];
+            }else if (C_state == C_TYDLStateSuspended){
+                [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"5"}];
             }
         }];
         
-    }else if ([C_dic[E_FUNCTION] isEqualToString:@"pause"]){
+    }else if ([C_dic[C_E_FUNCTION] isEqualToString:@"pause"]){
         //暂停任务
         NSString *C_task_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
-            A_TYDownLoadDataManager *C_manager = [A_TYDownLoadDataManager manager];
-            [C_manager suspendWithDownloadModel:_C_nonDownLoads[C_task_id]];
-        [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":_C_download_id,@"event":@"pause"}];
-    }else if ([C_dic[E_FUNCTION] isEqualToString:@"resume"]){
+            A_TYDLDataManager *C_manager = [A_TYDLDataManager B_manager];
+            [C_manager B_suspendWithDLModel:_C_nonDLs[C_task_id]];
+        [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_DL_id,@"event":@"pause"}];
+    }else if ([C_dic[C_E_FUNCTION] isEqualToString:@"resume"]){
         NSString *C_task_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
-            A_TYDownLoadDataManager *C_manager = [A_TYDownLoadDataManager manager];
-            [C_manager resumeWithDownloadModel:_C_nonDownLoads[C_task_id]];
-        [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":_C_download_id,@"event":@"resume"}];
-    }else if ([C_dic[E_FUNCTION] isEqualToString:@"abort"]){
+            A_TYDLDataManager *C_manager = [A_TYDLDataManager B_manager];
+            [C_manager B_resumeWithDLModel:_C_nonDLs[C_task_id]];
+        [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_DL_id,@"event":@"resume"}];
+    }else if ([C_dic[C_E_FUNCTION] isEqualToString:@"abort"]){
         NSString *C_task_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
-        A_TYDownLoadDataManager *C_manager = [A_TYDownLoadDataManager manager];
-        [C_manager cancleWithDownloadModel:_C_nonDownLoads[C_task_id]];
-        [C_manager deleteFileWithDownloadModel:_C_nonDownLoads[C_task_id]];
-        [C_manager.C_downloadingModels removeAllObjects];
-        [self B_toJsonc:E_DOWNLOAD B_f:E_EVENTLISTENER B_d:@{@"id":_C_download_id,@"event":@"abort"}];
+        A_TYDLDataManager *C_manager = [A_TYDLDataManager B_manager];
+        [C_manager B_cancleWithDLModel:_C_nonDLs[C_task_id]];
+        [C_manager B_deleteFileWithDLModel:_C_nonDLs[C_task_id]];
+        [C_manager.C_DLingModels removeAllObjects];
+        [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_DL_id,@"event":@"abort"}];
     }
 }
 -(void)B_jsToNativeWithZip:(NSDictionary *)C_dic{
-    if([C_dic[E_FUNCTION] isEqualToString:E_DECOMPRESS]){
+    if([C_dic[C_E_FUNCTION] isEqualToString:C_E_DECOMPRESS]){
         NSString *C_filePath = [[A_SandboxHelp B_GetdocumentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[NSString B_setSafeString:C_dic[@"args"][@"fileName"]]]];
         NSString * C_testDirectory = [[A_SandboxHelp B_GetdocumentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@/",[NSString B_setSafeString:C_dic[@"args"][@"targetPath"]]]];
         //删除
@@ -312,12 +312,12 @@
         NSLog(@"testDirectory->%@",C_testDirectory);
         NSLog(@"解压结果-->>%@",C_issuc?@"成功":@"失败");
         
-        [self B_toJsonc:E_ZIP B_f:E_DECOMPRESS B_d:@{@"id":C_dic[@"args"][@"id"],@"status":C_issuc?@"suc":@"fail"}];
+        [self B_toJsonc:C_E_ZIP B_f:C_E_DECOMPRESS B_d:@{@"id":C_dic[@"args"][@"id"],@"status":C_issuc?@"suc":@"fail"}];
         
     }
 }
 -(void)B_jsToNativeWithWebView:(NSDictionary *)C_dic{
-    if([C_dic[E_FUNCTION] isEqualToString:@"create"]){
+    if([C_dic[C_E_FUNCTION] isEqualToString:@"create"]){
         _C_wk_id = [NSString B_setSafeString:C_dic[@"args"][@"id"]];
         NSString *C_webUrl = [NSString B_setSafeString:C_dic[@"args"][@"url"]];
         NSString *C_orientation = [NSString B_setSafeString:C_dic[@"args"][@"styles"][@"orientation"]];
@@ -357,7 +357,7 @@
                         [C_img_view removeFromSuperview];
                     }];                   
                 }];
-                [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
+                [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
             }else{
                 
                 if ([C_orientation isEqualToString:@"portrait-primary"]) {
@@ -397,7 +397,7 @@
                         
                        
                     }];
-                    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
+                    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
                 }else{
                     _C_isWebHttps = YES;
                     UIDeviceOrientation C_duration = [[UIDevice currentDevice] orientation];
@@ -425,7 +425,7 @@
                         
                        
                     }];
-                    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
+                    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
                 }
                 
                 
@@ -442,27 +442,27 @@
             }
 //            [self toJsonc:E_WKWEBVIEW f:E_EVENTLISTENER d:@{@"id":_C_wk_id,@"event":@"show"}];
         }
-    }else if ([C_dic[E_FUNCTION] isEqualToString:@"show"]){
+    }else if ([C_dic[C_E_FUNCTION] isEqualToString:@"show"]){
         if (_C_isWebHttps) {
             _C_httpswkView.hidden = NO;
         }else{
             _C_wkView.hidden = NO;
         }
-        [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
+        [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"show"}];
     }
-    else if([[NSString B_setSafeString:C_dic[E_FUNCTION]] isEqualToString:@"hide"]){
+    else if([[NSString B_setSafeString:C_dic[C_E_FUNCTION]] isEqualToString:@"hide"]){
         NSURLRequest *C_request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]];
             [_C_wkView loadRequest:C_request];
         _C_wkView.hidden = YES;
         _C_httpswkView.hidden = YES;
-        [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"hide"}];
+        [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"hide"}];
     }
-    else if([[NSString B_setSafeString:C_dic[E_FUNCTION]] isEqualToString:@"close"]){
+    else if([[NSString B_setSafeString:C_dic[C_E_FUNCTION]] isEqualToString:@"close"]){
         NSURLRequest *C_request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]];
             [_C_wkView loadRequest:C_request];
         _C_wkView.hidden = YES;
         _C_httpswkView.hidden = YES;
-        [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
+        [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"close"}];
     }
 }
 -(void)B_toJsonc:(NSString *)C_c B_f:(NSString *)C_f B_d:(NSDictionary *)C_d{
@@ -582,8 +582,8 @@
     _C_dView.C_tipsLab.text = _C_dView.C_curLanguageDic[@"80009"][_C_dView.C_currentLanguage];
     _C_isfirst = YES;
     
-    [A_TYDownLoadDataManager manager].delegate = self;
-    _C_nonDownLoads = NSMutableDictionary.dictionary;
+    [A_TYDLDataManager B_manager].C_delegate = self;
+    _C_nonDLs = NSMutableDictionary.dictionary;
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"xgfirstStart"] == 168) {
         [[NSUserDefaults standardUserDefaults] setInteger:168 forKey:@"xgfirstStart"];
@@ -686,14 +686,14 @@
                 if (!C_acc) {
                     C_acc = @"";
                 }
-                NSString *C_configPath = [NSString stringWithFormat:@"%@/api/game/getconfig?channel_id=%@&account=%@&is_vest=0",C_obj,CHANNEL_ID,C_acc];
+                NSString *C_configPath = [NSString stringWithFormat:@"%@/api/game/getconfig?channel_id=%@&account=%@&is_vest=0",C_obj,C_CHANNEL_ID,C_acc];
                 C_mySelf.C_dView.C_proress = .05;
                 NSLog(@"configPath-->>%@",C_configPath);
                 [A_GameDal B_GetAppConfigWithPath:C_configPath andBack:^(id  _Nonnull C_obj) {
                     NSLog(@"222obj-->>%@",C_obj);
                     if (![C_obj isKindOfClass:[NSString class]]) {
                         
-                        NSString *C_nextUrl = [NSString stringWithFormat:@"https://%@/appupdate/%@/appUpdate.json?ver=%@",[NSString B_setSafeString:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:C_obj][@"Data"]][@"domain"]][@"cdn"]],CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
+                        NSString *C_nextUrl = [NSString stringWithFormat:@"https://%@/appupdate/%@/appUpdate.json?ver=%@",[NSString B_setSafeString:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:C_obj][@"Data"]][@"domain"]][@"cdn"]],C_CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
                         C_mySelf.C_appReportApi = [NSString B_setSafeString:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:C_obj][@"Data"]][@"domain"]][@"game"]];
                         C_mySelf.C_appUpdateStatus = [[NSDictionary B_setSafeDictionary:[NSDictionary B_setSafeDictionary:C_obj][@"Data"]][@"C_appUpdateStatus"] boolValue];
                         NSLog(@"nextUrl--->%@",C_nextUrl);
@@ -771,11 +771,11 @@
                                     NSString *C_reinstall_version = [NSString B_setSafeString:[NSDictionary B_setSafeDictionary:C_obj[@"iOS"]][@"reinstall_version"]];
             //                        NSString *wgtUrl = [NSString setSafeString:[NSDictionary setSafeDictionary:obj[@"iOS"]][@"wgtUrl"]];
                                     NSString *C_zipUrl = [NSString B_setSafeString:[NSDictionary B_setSafeDictionary:C_obj[@"iOS"]][@"zipUrl"]];
-                                    NSString *C_downLoadUrl = [NSString B_setSafeString:[NSDictionary B_setSafeDictionary:C_obj[@"iOS"]][@"downLoadUrl"]];
+                                    NSString *C_DLUrl = [NSString B_setSafeString:[NSDictionary B_setSafeDictionary:C_obj[@"iOS"]][@"downLoadUrl"]];
                                     
                                     if (C_curVersion.length == 0) {
                                         NSLog(@"第一次启动程序~~~~");
-                                        [C_mySelf B_downloadZipWith:C_zipUrl];
+                                        [C_mySelf B_DLZipWith:C_zipUrl];
                                         return;
                                     }
                                     NSLog(@"curVersion-->%@  new_version-->%@",C_curVersion,C_new_version);
@@ -784,7 +784,7 @@
                                             [A_GameDal B_PostAppReport:C_mySelf.C_appReportApi andParams:@{@"time_diff":@"0",@"event":@"13",@"status":@"2",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]} andBack:^(BOOL C_success, id  _Nonnull C_obj) {
                                             }];
                                             [A_promptHelp B_show:[NSString stringWithFormat:@"%@  ",C_mySelf.C_dView.C_curLanguageDic[@"80001"][C_mySelf.C_dView.C_currentLanguage]] view:self.view options:@[[NSString stringWithFormat:@"%@_Reinstall",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int tag) {
-                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:C_downLoadUrl] options:@{} completionHandler:^(BOOL success) {
+                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:C_DLUrl] options:@{} completionHandler:^(BOOL success) {
                                                 }];
                                             } animated:NO];
                                             return;
@@ -792,7 +792,7 @@
                                         if ([C_is_forceupdate boolValue] && ![C_curVersion isEqualToString:C_new_version]) {
                                             [A_GameDal B_PostAppReport:C_mySelf.C_appReportApi andParams:@{@"time_diff":@"0",@"event":@"14",@"status":@"2",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]} andBack:^(BOOL C_success, id  _Nonnull C_obj) {
                                             }];
-                                            [C_mySelf B_downloadZipWith:C_zipUrl];
+                                            [C_mySelf B_DLZipWith:C_zipUrl];
                                             return;
                                         }
                                         if([A_JHHelp B_compareVersion:C_new_version v2:C_curVersion]){
@@ -802,7 +802,7 @@
                                             [[NSUserDefaults standardUserDefaults] synchronize];
                                             [A_GameDal B_PostAppReport:C_mySelf.C_appReportApi andParams:@{@"time_diff":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"event":@"8",@"status":@"2",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]} andBack:^(BOOL C_success, id  _Nonnull C_obj) {
                                             }];
-                                            [C_mySelf B_downloadZipWith:C_zipUrl];
+                                            [C_mySelf B_DLZipWith:C_zipUrl];
                                             return;
                                         }
                                         //改测试服再进去游戏
@@ -856,7 +856,7 @@
                                 //c002
                                 [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                                     NSLog(@"`~~~%d",C_tag);
-                                    [[A_appReportExample B_sharedInstance].C_apithrees addObject:@{@"time_diff":@"0",@"event":@"12",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
+                                    [[A_appReportExample B_sharedInstance].C_apithrees addObject:@{@"time_diff":@"0",@"event":@"12",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:C_VP_ADS],C_CHANNEL_ID],@"is_native":@"1"}]}];
                                     
                                     [self B_cheakUp];
                                 } animated:NO];
@@ -867,7 +867,7 @@
                         
                         [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                             NSLog(@"`~~~%d",C_tag);
-                            [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"11",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
+                            [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"11",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:C_VP_ADS],C_CHANNEL_ID],@"is_native":@"1"}]}];
                             [self B_cheakUp];
                         } animated:NO];
                     }
@@ -876,7 +876,7 @@
                 //c001
                 [A_promptHelp B_show:[NSString stringWithFormat:@"%@  %@",C_mySelf.C_dView.C_curLanguageDic[@"80007"][C_mySelf.C_dView.C_currentLanguage],C_obj] view:self.view options:@[[NSString stringWithFormat:@"%@_Reconnect",C_mySelf.C_dView.C_currentLanguage]] finishBack:^(int C_tag) {
                     NSLog(@"`~~~%d",C_tag);
-                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:VP_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
+                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"4",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@"nil",@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/domain/%@.json",[NSString B_getDecrypt:C_VP_ADS],C_CHANNEL_ID],@"is_native":@"1"}]}];
                     
                     
                     [self B_cheakUp];
@@ -891,7 +891,7 @@
     }
 }
 
--(void)B_downloadZipWith:(NSString *)C_path{
+-(void)B_DLZipWith:(NSString *)C_path{
     [A_GameDal B_PostAppLoginReport:_C_appReportApi andParams:@{@"type":@"3",@"report_time":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"package":[NSString B_setSafeString:[[NSBundle mainBundle] bundleIdentifier]],@"device_number":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"standard":[NSString  stringWithFormat:@"%zd",(NSInteger)[[[[NSFileManager defaultManager] attributesOfItemAtPath:[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].path error:nil] objectForKey:NSFileCreationDate] timeIntervalSince1970]]} andBack:^(BOOL C_success, id  _Nonnull C_obj) {
         NSLog(@"~~~~~~~~>>>%@",C_obj);
     }];
@@ -899,14 +899,14 @@
     [FIRAnalytics logEventWithName:@"Dummy_Trigger_Update" parameters:nil];
     _C_dView.C_tipsLab.text = _C_dView.C_curLanguageDic[@"80008"][_C_dView.C_currentLanguage];
     __weak A_UpdateController *C_mySelf = self;
-    [A_JHHelp B_DownLoadResourcesWithUrl:C_path downLoading:^(id  _Nonnull C_obj) {
+    [A_JHHelp B_DLResourcesWithUrl:C_path DLing:^(id  _Nonnull C_obj) {
 //        NSLog(@"obj1->%@",obj);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             C_mySelf.C_dView.C_proress = .15+[C_obj floatValue]*85.0/100.0;
         });
         NSLog(@"obj1->%lf", C_mySelf.C_dView.C_proress);
-    } downLoadEnd:^(id  _Nonnull C_obj) {
+    } DLEnd:^(id  _Nonnull C_obj) {
         NSLog(@"img1 == %@", C_obj);
         NSString *C_zipPath = [NSString B_setSafeString:C_obj];
 //        NSString *zipName = [[zipPath lastPathComponent] stringByDeletingPathExtension];
@@ -1030,7 +1030,7 @@
 }
 
 - (void)B_loadLocalRequest:(NSString *)C_path{
-    [self.C_wkView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%ld/%@", [[A_LocalWebServerManager B_sharedInstance] port],C_path]] cachePolicy:1 timeoutInterval:20]];
+    [self.C_wkView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%ld/%@", [[A_LocalWebServerManager B_sharedInstance] C_port],C_path]] cachePolicy:1 timeoutInterval:20]];
 //    [self.C_wkView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://game1.gameyibang.cn/game/index.html?id%3D1001%26uid%3D5413%26token%3Df00Cpr21sdmRfjRjZRPfl1q4d4%26cdn%3Dhttps%3A%2F%2Fcdn1.gameyibang.cn%26musicSwitch%3Dtrue%26lang%3Dcn%26domainName%3Dgame1.gameyibang.cn%26type%3D1%26gl%3D1001%2C1101%2C1201"] cachePolicy:1 timeoutInterval:20]];
 }
 
@@ -1043,11 +1043,11 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    _C_wkView.frame = CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
-    _C_dView.frame = CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
+    _C_wkView.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
+    _C_dView.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
     UIWindow *C_window = [UIApplication sharedApplication].keyWindow;
     UIView *C_img_view = [C_window viewWithTag:765];
-    C_img_view.frame = CGRectMake(0, 0, 3*WIDTHDiv, HEIGHTDiv);
+    C_img_view.frame = CGRectMake(0, 0, 3*C_WIDTHDiv, C_HEIGHTDiv);
 }
 
 
@@ -1087,7 +1087,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)C_challenge
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)C_webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)C_navigation withError:(NSError *)C_error {
-    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
+    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)C_webView didCommitNavigation:(WKNavigation *)C_navigation {
@@ -1095,12 +1095,12 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)C_challenge
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)C_webView didFinishNavigation:(WKNavigation *)C_navigation {
     if(![C_webView.URL.absoluteString isEqualToString:@"about:blank"]){
-        [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":[NSString B_setSafeString:_C_wk_id],@"event":@"loaded"}];
+        [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":[NSString B_setSafeString:_C_wk_id],@"event":@"loaded"}];
     }
 }
 //提交发生错误时调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [self B_toJsonc:E_WKWEBVIEW B_f:E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
+    [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":_C_wk_id,@"event":@"error"}];
 }
 // 接收到服务器跳转请求即服务重定向时之后调用
 - (void)webView:(WKWebView *)C_webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)C_navigation {

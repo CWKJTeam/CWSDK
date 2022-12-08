@@ -130,19 +130,19 @@
 }
 
 
-+ (instancetype)viewFromXib
++ (instancetype)B_viewFromXib
 {
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil] lastObject];
 }
 
--(BOOL)isShowIngOnKeyWindow
+-(BOOL)B_isShowIngOnKeyWindow
 {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *C_keyWindow = [UIApplication sharedApplication].keyWindow;
     
-    CGRect  newFrame = [keyWindow convertRect:self.frame fromView:self.superview];
-    CGRect  winBounds = keyWindow.bounds;
+    CGRect  C_newFrame = [C_keyWindow convertRect:self.frame fromView:self.superview];
+    CGRect  C_winBounds = C_keyWindow.bounds;
     
-    BOOL intersects = CGRectIntersectsRect(newFrame, winBounds);
+    BOOL C_intersects = CGRectIntersectsRect(C_newFrame, C_winBounds);
     
 //    NSLog(@"-----%@----%lf- ----%@ --- %@",self.hidden?@"hidden不显示":@"hidden正常",self.alpha,self.window == keyWindow?@"当前window正常":@"window不正常",intersects?@"视图跟window相交正常":@"视图跟window相交不正常");
     

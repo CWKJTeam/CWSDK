@@ -87,7 +87,7 @@
 }
 
 +(void)B_GetimportantInformation:(McBack)C_back{
-    NSString *C_urlString =[NSString stringWithFormat:@"%@api/game/getconfig?channel_id=%@&vest_id=%@&is_vest=1&ctype=1",kApiHost,CHANNELID,VESTID];
+    NSString *C_urlString =[NSString stringWithFormat:@"%@api/game/getconfig?channel_id=%@&vest_id=%@&is_vest=1&ctype=1",C_kApiHost,C_CHANNELID,C_VESTID];
     NSLog(@"urlString---->%@",C_urlString);
     [A_AFNetworkingClient B_getWithPath:C_urlString withCallBack:^(id obj) {
 //        NSLog(@"GetimportantInformation---->>%@",obj);
@@ -141,10 +141,10 @@
 
 +(UIFont *)B_getFontWithUnderSix:(float)C_underSix{
     
-    CGFloat C_proportion = SIX_DIV;
+    CGFloat C_proportion = C_SIX_DIV;
     
-    if (IS_IPAD) {
-        C_proportion = (WIDTHDiv-IPAD_BETWEENS)/375;
+    if (C_IS_IPAD) {
+        C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
     return [UIFont systemFontOfSize:C_underSix*C_proportion];
@@ -152,10 +152,10 @@
 
 +(UIFont *)B_getboldFontWithUnderSix:(float)C_underSix{
     
-    CGFloat C_proportion = SIX_DIV;
+    CGFloat C_proportion = C_SIX_DIV;
     
-    if (IS_IPAD) {
-        C_proportion = (WIDTHDiv-IPAD_BETWEENS)/375;
+    if (C_IS_IPAD) {
+        C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
     return [UIFont boldSystemFontOfSize:C_underSix*C_proportion];
@@ -238,18 +238,18 @@
     return NO;
 }
 
-+(void)B_DownLoadResourcesWithUrl:(NSString *)C_url downLoading:(McBack)C_jhprogress downLoadEnd:(McBack)C_back{
++(void)B_DLResourcesWithUrl:(NSString *)C_url DLing:(McBack)C_jhprogress DLEnd:(McBack)C_back{
     NSURL *C_URL = [NSURL URLWithString:C_url];
     NSURLSessionConfiguration *C_configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *C_manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:C_configuration];
     
     NSURLRequest *C_request = [NSURLRequest requestWithURL:C_URL];
-    NSURLSessionDownloadTask *C__downloadTask = [C_manager downloadTaskWithRequest:C_request progress:^(NSProgress * _Nonnull downloadProgress) {
-        if (downloadProgress) {
+    NSURLSessionDownloadTask *C__DLTask = [C_manager downloadTaskWithRequest:C_request progress:^(NSProgress * _Nonnull DLProgress) {
+        if (DLProgress) {
             
-            C_jhprogress(@(1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount));
+            C_jhprogress(@(1.0 * DLProgress.completedUnitCount / DLProgress.totalUnitCount));
             
-//            NSLog(@"这个进度为%f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+//            NSLog(@"这个进度为%f",1.0 * DLProgress.completedUnitCount / DLProgress.totalUnitCount);
         }
         
         
@@ -270,7 +270,7 @@
         C_back(C_imgFilePath);
         
     }];
-    [C__downloadTask resume];
+    [C__DLTask resume];
 }
 
 +(NSInteger)B_determineNetwork{
@@ -325,7 +325,7 @@
 
 +(BOOL)B_isAccident{
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"isRunAorB"] == 0){
-        NSString *C_a = VESTID;
+        NSString *C_a = C_VESTID;
         NSString *C_b = [[UIPasteboard generalPasteboard] string];
         if([C_a isEqualToString:C_b]){
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"isRunAorB"];
@@ -340,8 +340,8 @@
 
 +(void)setLoginParame:(NSMutableDictionary *)C_dicParame;
 {
-    [C_dicParame setObject:VESTID forKey:@"vest_id"];
-    [C_dicParame setObject:CHANNELID forKey:@"channel_id"];
+    [C_dicParame setObject:C_VESTID forKey:@"vest_id"];
+    [C_dicParame setObject:C_CHANNELID forKey:@"channel_id"];
     NSMutableString *str = [self B_reqDiction:C_dicParame];
     NSString *timestr = [self B_transTotimeSp:[self B_getNowTimeTimestamp]];
     [C_dicParame setObject:timestr forKey:@"stime"];
@@ -412,8 +412,8 @@
         [A_JHHelp GetLogin:^(id  _Nonnull obj) {
             {
                 NSMutableDictionary *C_dics = [NSMutableDictionary dictionary];
-                [C_dics setValue:CHANNELID forKey:@"channel_id"];
-                [C_dics setValue:VESTID forKey:@"vest_id"];
+                [C_dics setValue:C_CHANNELID forKey:@"channel_id"];
+                [C_dics setValue:C_VESTID forKey:@"vest_id"];
                 
                 [C_dics setValue:[self B_transTotimeSp:[self B_getNowTimeTimestamp]] forKey:@"login_time"];
                 [C_dics setValue:[self B_getCurrentDeviceModel] forKey:@"device"];
@@ -453,8 +453,8 @@
                 
                 {
                     NSMutableDictionary *C_dics = [NSMutableDictionary dictionary];
-                    [C_dics setValue:CHANNELID forKey:@"channel_id"];
-                    [C_dics setValue:VESTID forKey:@"vest_id"];
+                    [C_dics setValue:C_CHANNELID forKey:@"channel_id"];
+                    [C_dics setValue:C_VESTID forKey:@"vest_id"];
                     
                     [C_dics setValue:[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]] forKey:@"login_time"];
                     [C_dics setValue:[A_JHHelp B_getCurrentDeviceModel] forKey:@"device"];
@@ -494,8 +494,8 @@
             [C__infoarrs removeObjectAtIndex:0];
         }
         NSMutableDictionary *C_dics = [NSMutableDictionary dictionary];
-        [C_dics setValue:CHANNELID forKey:@"channel_id"];
-        [C_dics setValue:VESTID forKey:@"vest_id"];
+        [C_dics setValue:C_CHANNELID forKey:@"channel_id"];
+        [C_dics setValue:C_VESTID forKey:@"vest_id"];
         
         [C_dics setValue:[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]] forKey:@"login_time"];
         [C_dics setValue:[A_JHHelp B_getCurrentDeviceModel] forKey:@"device"];
@@ -536,7 +536,7 @@
 +(void)GetDotReport:(NSMutableArray *)C_arrs call:(McBack)C_mcback{
     
     
-    NSString *C_path =[NSString stringWithFormat:@"%@api/VestLogin/dotReport",kApiHost];
+    NSString *C_path =[NSString stringWithFormat:@"%@api/VestLogin/dotReport",C_kApiHost];
     NSLog(@"path->%@",C_path);
     NSMutableDictionary *C_alldic = [NSMutableDictionary dictionary];
     [C_alldic setObject:C_arrs forKey:@"client_info"];
@@ -593,7 +593,7 @@
     [C_dicParame setObject:C_timestr forKey:@"stime"];
     [C_str appendString:C_timestr];
     [C_str appendString:@"CdO23vdMos23f9l3d2*z2"];
-    NSString *C_path = [NSString stringWithFormat:@"%@/api/Game/Login?username=%@&password=%@&stime=%@&sign=%@",kApiHost,C_username,C_password,C_timestr,[self B_md5:C_str]];
+    NSString *C_path = [NSString stringWithFormat:@"%@/api/Game/Login?username=%@&password=%@&stime=%@&sign=%@",C_kApiHost,C_username,C_password,C_timestr,[self B_md5:C_str]];
     NSLog(@"path----%@",C_path);
     [A_AFNetworkingClient B_getWithPath:C_path withCallBack:^(id obj) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
@@ -612,7 +612,7 @@
 }
 
 +(void)PostLoginWithdic:(NSMutableDictionary *)C_dic andMcBack:(McBack)C_mcback{
-    NSString *C_path =[NSString stringWithFormat:@"%@api/Game/visitorReg",kApiHost];
+    NSString *C_path =[NSString stringWithFormat:@"%@api/Game/visitorReg",C_kApiHost];
     [self setLoginParame:C_dic];
     [A_AFNetworkingClient B_postWithPath:C_path WithParams:C_dic withCallBack:^(id obj) {
         if ([obj isKindOfClass:[NSDictionary class]]) {

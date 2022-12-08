@@ -160,17 +160,17 @@
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     UIImageView *C_home_bg = [self.view viewWithTag:200];
-    C_home_bg.frame = CGRectMake(0, 0,WIDTHDiv, HEIGHTDiv/.462);
+    C_home_bg.frame = CGRectMake(0, 0,C_WIDTHDiv, C_HEIGHTDiv/.462);
     C_home_bg.center = self.view.center;
     
     UIImageView *C_logo_bg = [self.view viewWithTag:300];
-    C_logo_bg.frame = CGRectMake((WIDTHDiv - HEIGHTDiv*.36*.92)/2, HEIGHTDiv*.05, HEIGHTDiv*.36*.92,HEIGHTDiv*.36);
+    C_logo_bg.frame = CGRectMake((C_WIDTHDiv - C_HEIGHTDiv*.36*.92)/2, C_HEIGHTDiv*.05, C_HEIGHTDiv*.36*.92,C_HEIGHTDiv*.36);
     
     UIImageView *C_gome_img = [self.view viewWithTag:400];
-    C_gome_img.frame = CGRectMake((WIDTHDiv - HEIGHTDiv*.3*1.17)/2, HEIGHTDiv*.415,HEIGHTDiv*.3*1.17,HEIGHTDiv*.3);
+    C_gome_img.frame = CGRectMake((C_WIDTHDiv - C_HEIGHTDiv*.3*1.17)/2, C_HEIGHTDiv*.415,C_HEIGHTDiv*.3*1.17,C_HEIGHTDiv*.3);
     
     UIButton *C_fk_play = [self.view viewWithTag:500];
-    C_fk_play.frame = CGRectMake((WIDTHDiv -  HEIGHTDiv*.12*1.68)/2, HEIGHTDiv*.77,  HEIGHTDiv*.12*1.68, HEIGHTDiv*.12);
+    C_fk_play.frame = CGRectMake((C_WIDTHDiv -  C_HEIGHTDiv*.12*1.68)/2, C_HEIGHTDiv*.77,  C_HEIGHTDiv*.12*1.68, C_HEIGHTDiv*.12);
     
 
     

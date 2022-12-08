@@ -48,8 +48,8 @@
     UIWindow *C_keyWindow = [UIWindow B_availableWindow];
     NSAssert(C_keyWindow != nil, @"KeyWindow is nil");
 
-    UIViewController *viewController = [C_keyWindow rootViewController];
-    return [UIViewController findBestViewController:viewController];
+    UIViewController *C_viewController = [C_keyWindow rootViewController];
+    return [UIViewController findBestViewController:C_viewController];
 }
 
 @end

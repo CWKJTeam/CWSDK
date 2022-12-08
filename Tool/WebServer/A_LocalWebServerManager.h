@@ -10,11 +10,11 @@
 typedef void (^webBack)();
 @interface A_LocalWebServerManager : NSObject
 
-@property (nonatomic, assign, readonly) NSUInteger port;
+@property (nonatomic, assign, readonly) NSUInteger C_port;
 
 + (instancetype)B_sharedInstance;
 
-- (void)B_start:(NSString *)webLocalPath andBack:(webBack)back;
+- (void)B_start:(NSString *)C_webLocalPath andBack:(webBack)C_back;
 - (void)B_stop;
 
 - (BOOL)B_isStart;

@@ -45,7 +45,7 @@
 -(UILabel *)C_tipsLab{
     if(!_C_tipsLab){
         _C_tipsLab = [UILabel new];
-        _C_tipsLab.font = [A_JHHelp B_getFontWithUnderSix:IS_IPAD?12:16];
+        _C_tipsLab.font = [A_JHHelp B_getFontWithUnderSix:C_IS_IPAD?12:16];
         _C_tipsLab.textColor = [UIColor colorWithWhite:.2 alpha:1];
         _C_tipsLab.textAlignment = NSTextAlignmentCenter;
         _C_tipsLab.numberOfLines = 0;
@@ -82,22 +82,22 @@
         
         float c;
         float d;
-        if(WIDTHDiv>HEIGHTDiv){
-            c = WIDTHDiv;
-            d = HEIGHTDiv;
+        if(C_WIDTHDiv>C_HEIGHTDiv){
+            c = C_WIDTHDiv;
+            d = C_HEIGHTDiv;
         }else{
-            c = HEIGHTDiv;
-            d = WIDTHDiv;
+            c = C_HEIGHTDiv;
+            d = C_WIDTHDiv;
         }
         
-        self.frame = CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
+        self.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
         _C_animaindex = 0;
         _C_type = type;
         _C_tipStr = TipString;
         _C_image = obj;
         _C_options = options;
         _C_animated = animated;
-        UIButton *clearbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv)];
+        UIButton *clearbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv)];
         [clearbtn addTarget:self action:@selector(removeselfBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:clearbtn];
         [self addSubview:self.C_bgView];
@@ -115,7 +115,7 @@
 //    _tipsLab.text = _tipStr;
     _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:_C_tipStr attributes:@{
         NSForegroundColorAttributeName : [UIColor colorWithWhite:1 alpha:1],
-        NSFontAttributeName : [A_JHHelp B_getFontWithUnderSix:IS_PAD?14:18]
+        NSFontAttributeName : [A_JHHelp B_getFontWithUnderSix:C_IS_PAD?14:18]
     }];
     
     _C_headImg.image = [_C_image isKindOfClass:[NSString class]]?[UIImage B_imageNameds:_C_image]:[_C_image isKindOfClass:[UIImage class]]?_C_image:[UIImage B_imageNameds:@"ph-bg"];
@@ -128,11 +128,11 @@
         case 0:
         {
             NSLog(@"~~~~>>%@",_C_options);
-            _C_bgView.frame = CGRectMake((self.C_width-(IS_IPAD?self.C_height*.55/.6:self.C_height*.76/.6))/2, (self.C_height-(IS_IPAD?self.C_height*.55:self.C_height*.76))/2, (IS_IPAD?self.C_height*.55/.6:self.C_height*.76/.6), (IS_IPAD?self.C_height*.55:self.C_height*.76));
+            _C_bgView.frame = CGRectMake((self.C_width-(C_IS_IPAD?self.C_height*.55/.6:self.C_height*.76/.6))/2, (self.C_height-(C_IS_IPAD?self.C_height*.55:self.C_height*.76))/2, (C_IS_IPAD?self.C_height*.55/.6:self.C_height*.76/.6), (C_IS_IPAD?self.C_height*.55:self.C_height*.76));
 //            _bgView.backgroundColor = [UIColor greenColor];
             _C_headImg.frame = CGRectMake(0, 0, _C_bgView.C_width, _C_bgView.C_height);
             
-            _C_tipsLab.frame = CGRectMake(_C_bgView.C_width*.06+(IS_IPAD?30:20), _C_bgView.C_height*.1+(IS_IPAD?30:20), _C_bgView.C_width-(_C_bgView.C_width*.06+(IS_IPAD?30:20))*2, _C_bgView.C_height*.8-(IS_IPAD?30:20)-((_C_options.count != 0)?_C_bgView.C_height*.165:0));
+            _C_tipsLab.frame = CGRectMake(_C_bgView.C_width*.06+(C_IS_IPAD?30:20), _C_bgView.C_height*.1+(C_IS_IPAD?30:20), _C_bgView.C_width-(_C_bgView.C_width*.06+(C_IS_IPAD?30:20))*2, _C_bgView.C_height*.8-(C_IS_IPAD?30:20)-((_C_options.count != 0)?_C_bgView.C_height*.165:0));
             
             float btnw = _C_bgView.C_height*.165/.225;
             float btnh = _C_bgView.C_height*.165;
@@ -141,7 +141,7 @@
             for (int i = 0; i < _C_options.count; i++) {
                 UIButton *btn = [[UIButton alloc]initWithFrame:(_C_options.count == 2)?CGRectMake(jianxi*2+(_C_options.count-1-i)*(jianxi+btnw), _C_tipsLab.C_bottom, btnw, btnh):CGRectMake((_C_bgView.C_width - btnw)/2.0, _C_tipsLab.C_bottom, btnw, btnh)];
 //                [btn setBackgroundColor:[UIColor yellowColor]];
-                btn.titleLabel.font = [A_JHHelp B_getboldFontWithUnderSix:IS_IPAD?13:17];
+                btn.titleLabel.font = [A_JHHelp B_getboldFontWithUnderSix:C_IS_IPAD?13:17];
                 btn.tag = 300+i;
                 [btn setBackgroundImage:[UIImage B_imageNameds:_C_options[i]] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(promptBtnClick:) forControlEvents:UIControlEventTouchUpInside];

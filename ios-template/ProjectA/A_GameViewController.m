@@ -64,10 +64,10 @@
     [super viewWillLayoutSubviews];
         
     UIImageView *C_game_bg = [self.view viewWithTag:200];
-    C_game_bg.frame = CGRectMake(0, 0, WIDTHDiv, WIDTHDiv/.462);
+    C_game_bg.frame = CGRectMake(0, 0, C_WIDTHDiv, C_WIDTHDiv/.462);
     C_game_bg.center = self.view.center;
 
     
-    _C_gameview.frame = CGRectMake(0, 0, WIDTHDiv,HEIGHTDiv);
+    _C_gameview.frame = CGRectMake(0, 0, C_WIDTHDiv,C_HEIGHTDiv);
 }
 @end

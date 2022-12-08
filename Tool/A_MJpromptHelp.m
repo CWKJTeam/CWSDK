@@ -46,10 +46,10 @@
 
 -(UIFont *)B_getFontWithUnderSix:(float)underSix{
     
-    CGFloat C_proportion = SIX_DIV;
+    CGFloat C_proportion = C_SIX_DIV;
     
-    if (IS_IPAD) {
-        C_proportion = (WIDTHDiv-IPAD_BETWEENS)/375;
+    if (C_IS_IPAD) {
+        C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
     return [UIFont systemFontOfSize:underSix*C_proportion];
@@ -57,10 +57,10 @@
 
 -(UIFont *)B_getboldFontWithUnderSix:(float)underSix{
     
-    CGFloat C_proportion = SIX_DIV;
+    CGFloat C_proportion = C_SIX_DIV;
     
-    if (IS_IPAD) {
-        C_proportion = (WIDTHDiv-IPAD_BETWEENS)/375;
+    if (C_IS_IPAD) {
+        C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
     return [UIFont boldSystemFontOfSize:underSix*C_proportion];
@@ -70,7 +70,7 @@
 -(UILabel *)C_tipsLab{
     if(!_C_tipsLab){
         _C_tipsLab = [A_JHLabel new];
-        _C_tipsLab.font = [self B_getFontWithUnderSix:IS_IPAD?12:16];
+        _C_tipsLab.font = [self B_getFontWithUnderSix:C_IS_IPAD?12:16];
         _C_tipsLab.textColor = [UIColor colorWithWhite:.2 alpha:1];
         _C_tipsLab.textAlignment = NSTextAlignmentCenter;
         _C_tipsLab.numberOfLines = 0;
@@ -100,22 +100,22 @@
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:.5];
         float c;
         float d;
-        if(WIDTHDiv>HEIGHTDiv){
-            c = WIDTHDiv;
-            d = HEIGHTDiv;
+        if(C_WIDTHDiv>C_HEIGHTDiv){
+            c = C_WIDTHDiv;
+            d = C_HEIGHTDiv;
         }else{
-            c = HEIGHTDiv;
-            d = WIDTHDiv;
+            c = C_HEIGHTDiv;
+            d = C_WIDTHDiv;
         }
         
-        self.frame = CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
+        self.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
         _C_animaindex = 0;
         _C_type = type;
         _C_tipStr = TipString;
         _C_image = obj;
         _C_options = options;
         _C_animated = animated;
-        UIButton *clearbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv)];
+        UIButton *clearbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv)];
         clearbtn.tag = 1098;
         [clearbtn addTarget:self action:@selector(removeselfBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:clearbtn];
@@ -142,7 +142,7 @@
 //    _tipsLab.text = _tipStr;
     _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:_C_tipStr attributes:@{
         NSForegroundColorAttributeName : [UIColor colorWithWhite:.2 alpha:1],
-        NSFontAttributeName : [self B_getFontWithUnderSix:IS_PAD?12:16]
+        NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?12:16]
     }];
     
     _C_headImg.image = [_C_image isKindOfClass:[NSString class]]?[UIImage imageNamed:_C_image]:[_C_image isKindOfClass:[UIImage class]]?_C_image:[UIImage imageNamed:@"bg"];
@@ -163,7 +163,7 @@
             
             _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:_C_tipStr attributes:@{
                 NSForegroundColorAttributeName : [UIColor colorWithWhite:.95 alpha:1],
-                NSFontAttributeName : [self B_getFontWithUnderSix:IS_PAD?35:40]
+                NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?35:40]
             }];
             
             
@@ -182,9 +182,9 @@
             break;
         case 0:
         {
-            _C_bgView.frame = CGRectMake((WIDTHDiv-HEIGHTDiv*.7)/2, (HEIGHTDiv-HEIGHTDiv*.5)/2, HEIGHTDiv*.7, HEIGHTDiv*.5);
+            _C_bgView.frame = CGRectMake((C_WIDTHDiv-C_HEIGHTDiv*.7)/2, (C_HEIGHTDiv-C_HEIGHTDiv*.5)/2, C_HEIGHTDiv*.7, C_HEIGHTDiv*.5);
             UIImageView *imgbg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"over_bg"]];
-            imgbg.frame = CGRectMake(0, 0, HEIGHTDiv*.7, HEIGHTDiv*.7*.73);
+            imgbg.frame = CGRectMake(0, 0, C_HEIGHTDiv*.7, C_HEIGHTDiv*.7*.73);
             [_C_bgView addSubview:imgbg];
 //            _bgView.backgroundColor = [UIColor colorWithRed:113/255.0 green:111/255.0 blue:226/255.0 alpha:1];
 //            _bgView.layer.borderColor = [UIColor redColor].CGColor;
@@ -204,17 +204,17 @@
             
             _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:[[_C_tipStr componentsSeparatedByString:@"&&"] firstObject] attributes:@{
                 NSForegroundColorAttributeName : [UIColor whiteColor],
-                NSFontAttributeName : [self B_getFontWithUnderSix:IS_PAD?24:28]
+                NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?24:28]
             }];
-            float btnw = HEIGHTDiv*.15;
-            float btnh = HEIGHTDiv*.15;
+            float btnw = C_HEIGHTDiv*.15;
+            float btnh = C_HEIGHTDiv*.15;
             float jianxi = (_C_bgView.C_width - btnw*2)/5.0;
             
             
             UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(_C_bgView.C_width*.05, _C_tipsLab.C_bottom, _C_bgView.C_width*.9, _C_bgView.C_height-_C_bgView.C_height*.3-btnh)];
             lab.textAlignment = NSTextAlignmentCenter;
             lab.textColor = [UIColor whiteColor];
-            lab.font = [self B_getFontWithUnderSix:IS_PAD?16:20];
+            lab.font = [self B_getFontWithUnderSix:C_IS_PAD?16:20];
             lab.text = [[_C_tipStr componentsSeparatedByString:@"&&"] lastObject];
             [_C_bgView addSubview:lab];
             
@@ -306,13 +306,13 @@
                         
                         _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:@"2" attributes:@{
                             NSForegroundColorAttributeName : [UIColor colorWithWhite:.95 alpha:1],
-                            NSFontAttributeName : [self B_getFontWithUnderSix:IS_PAD?35:40]
+                            NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?35:40]
                         }];
                         [NSTimer scheduledTimerWithTimeInterval:1 repeats:NO block:^(NSTimer * _Nonnull timer) {
                             
                             _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:@"1" attributes:@{
                                 NSForegroundColorAttributeName : [UIColor colorWithWhite:.95 alpha:1],
-                                NSFontAttributeName : [self B_getFontWithUnderSix:IS_PAD?35:40]
+                                NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?35:40]
                             }];
                             [NSTimer scheduledTimerWithTimeInterval:1 repeats:NO block:^(NSTimer * _Nonnull timer) {
                                 if(_block){

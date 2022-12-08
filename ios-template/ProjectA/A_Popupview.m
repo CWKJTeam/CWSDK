@@ -18,7 +18,7 @@
     if (self = [self init])
     {
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:.5];
-        self.frame = CGRectMake(0, 0, WIDTHDiv, HEIGHTDiv);
+        self.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
         
         UIImageView *C_bgimg = [UIImageView new];
         C_bgimg.tag = 200;
@@ -52,13 +52,13 @@
 {
     [super layoutSubviews];
     UIImageView *C_bgimg = [self viewWithTag:200];
-    C_bgimg.frame = CGRectMake(0, 0, WIDTHDiv,HEIGHTDiv);
+    C_bgimg.frame = CGRectMake(0, 0, C_WIDTHDiv,C_HEIGHTDiv);
     
     UIImageView *C_logo = [self viewWithTag:300];
-    C_logo.frame = CGRectMake((WIDTHDiv - HEIGHTDiv*.25*1.55)/2, HEIGHTDiv*.25,HEIGHTDiv*.25*1.55,HEIGHTDiv*.25);
+    C_logo.frame = CGRectMake((C_WIDTHDiv - C_HEIGHTDiv*.25*1.55)/2, C_HEIGHTDiv*.25,C_HEIGHTDiv*.25*1.55,C_HEIGHTDiv*.25);
    
     UIImageView *C_rebtn = [self viewWithTag:1000];
-    C_rebtn.frame =  CGRectMake((WIDTHDiv -  HEIGHTDiv*.12*1.68)/2, HEIGHTDiv*.6,  HEIGHTDiv*.12*1.68, HEIGHTDiv*.12);
+    C_rebtn.frame =  CGRectMake((C_WIDTHDiv -  C_HEIGHTDiv*.12*1.68)/2, C_HEIGHTDiv*.6,  C_HEIGHTDiv*.12*1.68, C_HEIGHTDiv*.12);
 }
 
 @end

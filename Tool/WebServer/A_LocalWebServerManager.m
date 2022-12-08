@@ -13,49 +13,49 @@
 
 @interface A_LocalWebServerManager ()
 {
-    HTTPServer *_httpServer;
+    HTTPServer *_C_httpServer;
 }
 @end
 
 @implementation A_LocalWebServerManager
 
 + (instancetype)B_sharedInstance {
-    static A_LocalWebServerManager *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[A_LocalWebServerManager alloc] init];
+    static A_LocalWebServerManager *_C_sharedInstance = nil;
+    static dispatch_once_t C_onceToken;
+    dispatch_once(&C_onceToken, ^{
+        _C_sharedInstance = [[A_LocalWebServerManager alloc] init];
     });
-    return _sharedInstance;
+    return _C_sharedInstance;
 }
 
 - (BOOL)B_isStart{
-    if (_httpServer && [_httpServer isRunning]) {
+    if (_C_httpServer && [_C_httpServer isRunning]) {
         return YES;
     }
     return NO;
 }
 
-- (void)B_start:(NSString *)webLocalPath andBack:(webBack)back{
+- (void)B_start:(NSString *)C_webLocalPath andBack:(webBack)C_back{
     
-    _port = 13131;
+    _C_port = 13131;
     
-    if (!_httpServer) {
-        _httpServer = [[HTTPServer alloc] init];
+    if (!_C_httpServer) {
+        _C_httpServer = [[HTTPServer alloc] init];
 //        [_httpServer setConnectionClass:[MyHTTPConnection class]];
-        [_httpServer setType:@"_http._tcp."];
-        [_httpServer setPort:_port];
+        [_C_httpServer setType:@"_http._tcp."];
+        [_C_httpServer setPort:_C_port];
 //        NSString * webLocalPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Resource"];
-        [_httpServer setDocumentRoot:webLocalPath];
+        [_C_httpServer setDocumentRoot:C_webLocalPath];
         
-        NSLog(@"Setting document root: %@", webLocalPath);
+        NSLog(@"Setting document root: %@", C_webLocalPath);
         
     }
     
-    if (_httpServer && ![_httpServer isRunning]) {
-        NSError *error;
-        if([_httpServer start:&error]) {
-            NSLog(@"start server success in port %d %@", [_httpServer listeningPort], [_httpServer publishedName]);
-            back();
+    if (_C_httpServer && ![_C_httpServer isRunning]) {
+        NSError *C_error;
+        if([_C_httpServer start:&C_error]) {
+            NSLog(@"start server success in port %d %@", [_C_httpServer listeningPort], [_C_httpServer publishedName]);
+            C_back();
         } else {
             NSLog(@"启动失败");
         }
@@ -64,8 +64,8 @@
 }
 
 - (void)B_stop {
-    if (_httpServer && [_httpServer isRunning]) {
-        [_httpServer stop];
+    if (_C_httpServer && [_C_httpServer isRunning]) {
+        [_C_httpServer stop];
     }
 }
 

@@ -20,7 +20,7 @@
     AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
     C_manager.requestSerializer.timeoutInterval = 3;
     [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_downloadProgress) {
+    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull C_task, id  _Nullable C_responseObject) {
         NSDictionary *C_dic = [NSJSONSerialization JSONObjectWithData:C_responseObject options:0 error:nil];
@@ -108,9 +108,9 @@
 
 
 +(void)B_GetHostHead:(GameBack)C_back{
-    NSString *C_path1 = [NSString stringWithFormat:@"%@/domain/%@.json?ver=%@",[NSString B_getDecrypt:VP2_ADS],CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
+    NSString *C_path1 = [NSString stringWithFormat:@"%@/domain/%@.json?ver=%@",[NSString B_getDecrypt:C_VP2_ADS],C_CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
    
-    NSString *C_path2 = [NSString stringWithFormat:@"%@/vpower88/%@.json?ver=%@",[NSString B_getDecrypt:GO_ADS],CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
+    NSString *C_path2 = [NSString stringWithFormat:@"%@/vpower88/%@.json?ver=%@",[NSString B_getDecrypt:C_GO_ADS],C_CHANNEL_ID,[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]]];
     
     for (int C_i= 0; C_i < 6; C_i++) {
         NSString *C_urlstr = C_path1;
@@ -126,7 +126,7 @@
                 if(C_hosterrornum == 6){
                     C_back(@"C001");
                     NSError *C_erreos = C_obj;
-                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"0",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@(C_erreos.code),@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/vpower88/%@.json",[NSString B_getDecrypt:GO_ADS],CHANNEL_ID],@"is_native":@"1"}]}];
+                    [[A_appReportExample B_sharedInstance].C_mutArrs addObject:@{@"time_diff":@"0",@"event":@"10",@"status":@"0",@"ctime":[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]],@"error_info":[A_JHHelp B_convertToJsonData:@{@"model":[A_JHHelp B_getCurrentDeviceModel],@"system":[[UIDevice currentDevice] systemVersion],@"version":[A_JHHelp B_getProjBVersion],@"code":@(C_erreos.code),@"imei":[[[UIDevice currentDevice] identifierForVendor] UUIDString],@"url":[NSString stringWithFormat:@"%@/vpower88/%@.json",[NSString B_getDecrypt:C_GO_ADS],C_CHANNEL_ID],@"is_native":@"1"}]}];
                 }
             }else{
                 NSInteger C_hostfinishnum = [[NSUserDefaults standardUserDefaults] integerForKey:@"gethostfinishnum"];
@@ -157,11 +157,11 @@
     AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
     C_manager.requestSerializer.timeoutInterval = 3;
     [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_downloadProgress) {
+    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull C_task, id  _Nullable C_responseObject) {
         NSDictionary *C_dic = [NSJSONSerialization JSONObjectWithData:C_responseObject options:0 error:nil];
-        C_myCallback(YES,C_dic[CHANNEL_ID]);
+        C_myCallback(YES,C_dic[C_CHANNEL_ID]);
     } failure:^(NSURLSessionDataTask * _Nullable C_task, NSError * _Nonnull C_error) {
         C_myCallback(NO,C_error);
     }];
@@ -213,7 +213,7 @@
     AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
     C_manager.requestSerializer.timeoutInterval = 3;
     [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_downloadProgress) {
+    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull C_DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull C_task, id  _Nullable C_responseObject) {
         NSDictionary *C_dic = [NSJSONSerialization JSONObjectWithData:C_responseObject options:0 error:nil];

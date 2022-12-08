@@ -40,7 +40,7 @@ typedef void (^McBack)(id obj);
 
 +(NSInteger)B_determineNetwork;
 
-+(void)B_DownLoadResourcesWithUrl:(NSString *)C_url downLoading:(McBack)C_back downLoadEnd:(McBack)C_back;
++(void)B_DLResourcesWithUrl:(NSString *)C_url DLing:(McBack)C_back DLEnd:(McBack)C_back;
 
 + (NSString *) B_md5:(NSString *) C_str;
 

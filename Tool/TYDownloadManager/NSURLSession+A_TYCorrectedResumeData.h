@@ -1,6 +1,6 @@
 //
 //  NSURLSession+TYCorrectedResumeData.h
-//  TYDownloadManagerDemo
+//  TYDLManagerDemo
 //
 //  Created by tanyang on 2016/10/7.
 //  Copyright © 2016年 tany. All rights reserved.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSURLSession (TYCorrectedResumeData)
+@interface NSURLSession (A_TYCorrectedResumeData)
 
-- (NSURLSessionDownloadTask *)downloadTaskWithCorrectResumeData:(NSData *)resumeData;
+- (NSURLSessionDownloadTask *)B_DLTaskWithCorrectResumeData:(NSData *)C_resumeData;
 
 @end

@@ -97,7 +97,7 @@
         C_label.frame = CGRectMake(C_dection.x - self->_C_img_1.C_width*.06, C_dection.y - self->_C_img_1.C_width*.07, self->_C_img_1.C_width*.15, self->_C_img_1.C_width*.15);
         
         [UIView animateWithDuration:2 animations:^{
-            C_label.frame = CGRectMake(WIDTHDiv*.72, WIDTHDiv*.21, self->_C_img_1.C_width*.15, self->_C_img_1.C_width*.15);
+            C_label.frame = CGRectMake(C_WIDTHDiv*.72, C_WIDTHDiv*.21, self->_C_img_1.C_width*.15, self->_C_img_1.C_width*.15);
 
         } completion:^(BOOL finished){
             [C_label removeFromSuperview];
@@ -154,7 +154,7 @@
     }
     for (int i = 0; i < 5; i++) {
         UIImageView *C_ifright = [self viewWithTag:500+i];
-        C_ifright.frame = CGRectMake((WIDTHDiv - HEIGHTDiv*.35)/2 + HEIGHTDiv*.077*i, HEIGHTDiv*.2, HEIGHTDiv*.05, HEIGHTDiv*.05);
+        C_ifright.frame = CGRectMake((C_WIDTHDiv - C_HEIGHTDiv*.35)/2 + C_HEIGHTDiv*.077*i, C_HEIGHTDiv*.2, C_HEIGHTDiv*.05, C_HEIGHTDiv*.05);
     }
     
     for (int i = 0; i < 2; i++) {
@@ -260,19 +260,19 @@
     [super layoutSubviews];
     
     UIButton *C_rebtn = [self viewWithTag:200];
-    C_rebtn.frame = CGRectMake(WIDTHDiv*.05, HEIGHTDiv*.05, HEIGHTDiv*.08*1.67, HEIGHTDiv*.08);
+    C_rebtn.frame = CGRectMake(C_WIDTHDiv*.05, C_HEIGHTDiv*.05, C_HEIGHTDiv*.08*1.67, C_HEIGHTDiv*.08);
     
     UIImageView *C_levelshow = [self viewWithTag:300];
-    C_levelshow.frame = CGRectMake(WIDTHDiv*.07, HEIGHTDiv*.15, HEIGHTDiv*.03*4.4 , HEIGHTDiv*.03);
+    C_levelshow.frame = CGRectMake(C_WIDTHDiv*.07, C_HEIGHTDiv*.15, C_HEIGHTDiv*.03*4.4 , C_HEIGHTDiv*.03);
     
     UIImageView *C_timebg = [self viewWithTag:400];
-    C_timebg.frame = CGRectMake(WIDTHDiv*.65, WIDTHDiv*.05, HEIGHTDiv*.17, HEIGHTDiv*.17);
+    C_timebg.frame = CGRectMake(C_WIDTHDiv*.65, C_WIDTHDiv*.05, C_HEIGHTDiv*.17, C_HEIGHTDiv*.17);
     
     _C_textimg.frame = CGRectMake(C_timebg.C_width*.22, C_timebg.C_height*.2, C_timebg.C_width*.6, C_timebg.C_height*.55);
     
     for (int i = 0 ; i < 2; i++) {
         UIImageView *C_frame = [self viewWithTag:600+i];
-        C_frame.frame = CGRectMake((WIDTHDiv - HEIGHTDiv*.37*1.16)/2, HEIGHTDiv*.26 +  HEIGHTDiv*.355*i,HEIGHTDiv*.37*1.16, HEIGHTDiv*.37);
+        C_frame.frame = CGRectMake((C_WIDTHDiv - C_HEIGHTDiv*.37*1.16)/2, C_HEIGHTDiv*.26 +  C_HEIGHTDiv*.355*i,C_HEIGHTDiv*.37*1.16, C_HEIGHTDiv*.37);
         
         if (i == 0) {
             UIImageView *C_imgbg0 = [C_frame viewWithTag:610+i];

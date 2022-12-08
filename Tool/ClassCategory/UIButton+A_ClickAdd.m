@@ -24,19 +24,19 @@
 
 }
 
-- (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
-    NSString *key = @"appStarNumber";
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSString *number = [def objectForKey:key];
-    NSInteger num1 = number.integerValue;
-    num1 += 1;
-    number = [NSString stringWithFormat:@"%zd",num1];
-    [def setObject:number forKey:key];
-    [def synchronize];
+- (void)B_sendAction:(SEL)C_action to:(id)C_target forEvent:(UIEvent *)C_event{
+    NSString *C_key = @"appStarNumber";
+    NSUserDefaults *C_def = [NSUserDefaults standardUserDefaults];
+    NSString *C_number = [C_def objectForKey:C_key];
+    NSInteger C_num1 = C_number.integerValue;
+    C_num1 += 1;
+    C_number = [NSString stringWithFormat:@"%zd",C_num1];
+    [C_def setObject:C_number forKey:C_key];
+    [C_def synchronize];
 //    NSLog(@"number->%@",number);
     [[NSUserDefaults standardUserDefaults] setObject:[A_JHHelp B_transTotimeSp:[A_JHHelp B_getNowTimeTimestamp]] forKey:@"logout_time"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [super sendAction:action to:target forEvent:event];
+    [super sendAction:C_action to:C_target forEvent:C_event];
 }
 
 //- (void)custom_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{

@@ -56,11 +56,11 @@
 		6CE6E8DE281BEAAB00C07D79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CE6E8DD281BEAAB00C07D79 /* GoogleService-Info.plist */; };
 		6CE9DB3E2763278D0088B894 /* A_SandboxHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB3D2763278D0088B894 /* A_SandboxHelp.m */; };
 		6CE9DB41276328E10088B894 /* A_UpBassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB40276328E10088B894 /* A_UpBassController.m */; };
-		6CE9DB5F27634C640088B894 /* A_TYDownLoadDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5427634C640088B894 /* A_TYDownLoadDataManager.m */; };
-		6CE9DB6027634C640088B894 /* A_TYDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5527634C640088B894 /* A_TYDownloadModel.m */; };
-		6CE9DB6127634C640088B894 /* A_TYDownloadUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5627634C640088B894 /* A_TYDownloadUtility.m */; };
-		6CE9DB6227634C640088B894 /* A_TYDownloadSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5727634C640088B894 /* A_TYDownloadSessionManager.m */; };
-		6CE9DB6327634C640088B894 /* NSURLSession+TYCorrectedResumeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5827634C640088B894 /* NSURLSession+TYCorrectedResumeData.m */; };
+		6CE9DB5F27634C640088B894 /* A_TYDLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5427634C640088B894 /* A_TYDLDataManager.m */; };
+		6CE9DB6027634C640088B894 /* A_TYDLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5527634C640088B894 /* A_TYDLModel.m */; };
+		6CE9DB6127634C640088B894 /* A_TYDLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5627634C640088B894 /* A_TYDLUtility.m */; };
+		6CE9DB6227634C640088B894 /* A_TYDLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5727634C640088B894 /* A_TYDLSessionManager.m */; };
+		6CE9DB6327634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9DB5827634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m */; };
 		9C462F964462DE9D6AB757E9 /* libPods-500080.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB617CDEE1042D5F13B3C4 /* libPods-500080.a */; };
 		B2988E96292C580F00C89720 /* A_TextImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2988E5E292C580E00C89720 /* A_TextImgView.m */; };
 		B2988E97292C580F00C89720 /* A_VestBassController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2988E61292C580E00C89720 /* A_VestBassController.m */; };
@@ -208,17 +208,17 @@
 		6CE9DB3D2763278D0088B894 /* A_SandboxHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A_SandboxHelp.m; sourceTree = "<group>"; };
 		6CE9DB3F276328E10088B894 /* A_UpBassController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = A_UpBassController.h; sourceTree = "<group>"; };
 		6CE9DB40276328E10088B894 /* A_UpBassController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A_UpBassController.m; sourceTree = "<group>"; };
-		6CE9DB5427634C640088B894 /* A_TYDownLoadDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDownLoadDataManager.m; sourceTree = "<group>"; };
-		6CE9DB5527634C640088B894 /* A_TYDownloadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDownloadModel.m; sourceTree = "<group>"; };
-		6CE9DB5627634C640088B894 /* A_TYDownloadUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDownloadUtility.m; sourceTree = "<group>"; };
-		6CE9DB5727634C640088B894 /* A_TYDownloadSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDownloadSessionManager.m; sourceTree = "<group>"; };
-		6CE9DB5827634C640088B894 /* NSURLSession+TYCorrectedResumeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+TYCorrectedResumeData.m"; sourceTree = "<group>"; };
-		6CE9DB5927634C640088B894 /* A_TYDownLoadDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDownLoadDataManager.h; sourceTree = "<group>"; };
-		6CE9DB5A27634C640088B894 /* A_TYDownloadUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDownloadUtility.h; sourceTree = "<group>"; };
-		6CE9DB5B27634C640088B894 /* A_TYDownloadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDownloadModel.h; sourceTree = "<group>"; };
-		6CE9DB5C27634C640088B894 /* A_TYDownloadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDownloadDelegate.h; sourceTree = "<group>"; };
-		6CE9DB5D27634C640088B894 /* NSURLSession+TYCorrectedResumeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+TYCorrectedResumeData.h"; sourceTree = "<group>"; };
-		6CE9DB5E27634C640088B894 /* A_TYDownloadSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDownloadSessionManager.h; sourceTree = "<group>"; };
+		6CE9DB5427634C640088B894 /* A_TYDLDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDLDataManager.m; sourceTree = "<group>"; };
+		6CE9DB5527634C640088B894 /* A_TYDLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDLModel.m; sourceTree = "<group>"; };
+		6CE9DB5627634C640088B894 /* A_TYDLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDLUtility.m; sourceTree = "<group>"; };
+		6CE9DB5727634C640088B894 /* A_TYDLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A_TYDLSessionManager.m; sourceTree = "<group>"; };
+		6CE9DB5827634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+A_TYCorrectedResumeData.m"; sourceTree = "<group>"; };
+		6CE9DB5927634C640088B894 /* A_TYDLDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDLDataManager.h; sourceTree = "<group>"; };
+		6CE9DB5A27634C640088B894 /* A_TYDLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDLUtility.h; sourceTree = "<group>"; };
+		6CE9DB5B27634C640088B894 /* A_TYDLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDLModel.h; sourceTree = "<group>"; };
+		6CE9DB5C27634C640088B894 /* A_TYDLDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDLDelegate.h; sourceTree = "<group>"; };
+		6CE9DB5D27634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+A_TYCorrectedResumeData.h"; sourceTree = "<group>"; };
+		6CE9DB5E27634C640088B894 /* A_TYDLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A_TYDLSessionManager.h; sourceTree = "<group>"; };
 		743749E7512F6243D92AE217 /* Pods-WinClub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WinClub.debug.xcconfig"; path = "Target Support Files/Pods-WinClub/Pods-WinClub.debug.xcconfig"; sourceTree = "<group>"; };
 		7AA7098CFD703C40D896BFE3 /* Pods-vpower(i_1).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vpower(i_1).debug.xcconfig"; path = "Target Support Files/Pods-vpower(i_1)/Pods-vpower(i_1).debug.xcconfig"; sourceTree = "<group>"; };
 		8542469FCE0038346844831A /* Pods-UltraMonster(i_1).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UltraMonster(i_1).release.xcconfig"; path = "Target Support Files/Pods-UltraMonster(i_1)/Pods-UltraMonster(i_1).release.xcconfig"; sourceTree = "<group>"; };
@@ -542,17 +542,17 @@
 		6CE9DB5327634C640088B894 /* TYDownloadManager */ = {
 			isa = PBXGroup;
 			children = (
-				6CE9DB5427634C640088B894 /* A_TYDownLoadDataManager.m */,
-				6CE9DB5527634C640088B894 /* A_TYDownloadModel.m */,
-				6CE9DB5627634C640088B894 /* A_TYDownloadUtility.m */,
-				6CE9DB5727634C640088B894 /* A_TYDownloadSessionManager.m */,
-				6CE9DB5827634C640088B894 /* NSURLSession+TYCorrectedResumeData.m */,
-				6CE9DB5927634C640088B894 /* A_TYDownLoadDataManager.h */,
-				6CE9DB5A27634C640088B894 /* A_TYDownloadUtility.h */,
-				6CE9DB5B27634C640088B894 /* A_TYDownloadModel.h */,
-				6CE9DB5C27634C640088B894 /* A_TYDownloadDelegate.h */,
-				6CE9DB5D27634C640088B894 /* NSURLSession+TYCorrectedResumeData.h */,
-				6CE9DB5E27634C640088B894 /* A_TYDownloadSessionManager.h */,
+				6CE9DB5927634C640088B894 /* A_TYDLDataManager.h */,
+				6CE9DB5427634C640088B894 /* A_TYDLDataManager.m */,
+				6CE9DB5C27634C640088B894 /* A_TYDLDelegate.h */,
+				6CE9DB5B27634C640088B894 /* A_TYDLModel.h */,
+				6CE9DB5527634C640088B894 /* A_TYDLModel.m */,
+				6CE9DB5E27634C640088B894 /* A_TYDLSessionManager.h */,
+				6CE9DB5727634C640088B894 /* A_TYDLSessionManager.m */,
+				6CE9DB5A27634C640088B894 /* A_TYDLUtility.h */,
+				6CE9DB5627634C640088B894 /* A_TYDLUtility.m */,
+				6CE9DB5D27634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.h */,
+				6CE9DB5827634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m */,
 			);
 			path = TYDownloadManager;
 			sourceTree = "<group>";
@@ -786,26 +786,26 @@
 				5840E0B5292CB8B6000D1980 /* UIImagePickerController+A_MaskLandscape.m in Sources */,
 				306A7A95200C83F500E1EBB6 /* AppDelegate.m in Sources */,
 				5840E0B3292CB8B6000D1980 /* NSDictionary+A_safeAssignment.m in Sources */,
-				6CE9DB5F27634C640088B894 /* A_TYDownLoadDataManager.m in Sources */,
+				6CE9DB5F27634C640088B894 /* A_TYDLDataManager.m in Sources */,
 				6CBAD0912847536800D57D93 /* A_appReportExample.m in Sources */,
 				6CCFDCDA288E3287001D932D /* A_KeyChainStore.m in Sources */,
 				6C57B659287E9E17001CD446 /* A_JHLabel.m in Sources */,
 				6C52896E2769D704004F5E2B /* A_promptHelp.m in Sources */,
 				6C75EC31275DC23500953C0A /* A_MyHTTPConnection.m in Sources */,
-				6CE9DB6227634C640088B894 /* A_TYDownloadSessionManager.m in Sources */,
+				6CE9DB6227634C640088B894 /* A_TYDLSessionManager.m in Sources */,
 				306A7A92200C83F500E1EBB6 /* main.m in Sources */,
-				6CE9DB6327634C640088B894 /* NSURLSession+TYCorrectedResumeData.m in Sources */,
+				6CE9DB6327634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m in Sources */,
 				6C52892E276986EC004F5E2B /* A_loadGif.m in Sources */,
 				5840E0AD292CB8B6000D1980 /* NSString+A_safeAssignment.m in Sources */,
 				6C7BE08C2760BB41003C8187 /* A_Reachability.m in Sources */,
 				6CE9DB3E2763278D0088B894 /* A_SandboxHelp.m in Sources */,
 				6CE9DB41276328E10088B894 /* A_UpBassController.m in Sources */,
 				5840E0B4292CB8B6000D1980 /* UIImage+A_setImageStrName.m in Sources */,
-				6CE9DB6127634C640088B894 /* A_TYDownloadUtility.m in Sources */,
+				6CE9DB6127634C640088B894 /* A_TYDLUtility.m in Sources */,
 				5840E0B2292CB8B6000D1980 /* NSArray+A_safeAssignment.m in Sources */,
 				B2988EB3292C580F00C89720 /* A_GameViewController.m in Sources */,
 				B2988E96292C580F00C89720 /* A_TextImgView.m in Sources */,
-				6CE9DB6027634C640088B894 /* A_TYDownloadModel.m in Sources */,
+				6CE9DB6027634C640088B894 /* A_TYDLModel.m in Sources */,
 				6C7BE07427608FD7003C8187 /* A_UpdateController.m in Sources */,
 				5840E0AE292CB8B6000D1980 /* MBProgressHUD+A_HSWW.m in Sources */,
 				5840E0B6292CB8B6000D1980 /* UIViewController+A_Utility.m in Sources */,

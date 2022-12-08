@@ -20,7 +20,7 @@
 
 -(A_JHProgressView *)C_pView{
     if (!_C_pView) {
-        _C_pView = [[A_JHProgressView alloc]initWithFrame:CGRectMake(WIDTHDiv*.2, HEIGHTDiv*.5, WIDTHDiv*.6, WIDTHDiv*.6*.0517)];
+        _C_pView = [[A_JHProgressView alloc]initWithFrame:CGRectMake(C_WIDTHDiv*.2, C_HEIGHTDiv*.5, C_WIDTHDiv*.6, C_WIDTHDiv*.6*.0517)];
         
 //        _C_pView.layer.masksToBounds = YES;
     }
@@ -111,28 +111,28 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     
-    _C_Bgimg.frame = CGRectMake(0, 0, HEIGHTDiv/.462, HEIGHTDiv);
+    _C_Bgimg.frame = CGRectMake(0, 0, C_HEIGHTDiv/.462, C_HEIGHTDiv);
     _C_Bgimg.center = self.center;
     UIImageView *C_logoimg = [_C_Bgimg viewWithTag:1020];
     C_logoimg.frame = CGRectMake((_C_Bgimg.C_width-_C_Bgimg.C_height*.675/.857)/2, (_C_Bgimg.C_height-_C_Bgimg.C_height*.675)*.15, _C_Bgimg.C_height*.675/.857, _C_Bgimg.C_height*.675);
-    _C_proressView.frame = CGRectMake(0, HEIGHTDiv*.8, self.C_width, HEIGHTDiv*.2);
+    _C_proressView.frame = CGRectMake(0, C_HEIGHTDiv*.8, self.C_width, C_HEIGHTDiv*.2);
     
-    _C_pView.frame = CGRectMake(self.C_width*.2, (HEIGHTDiv*.2-self.C_width*.6*.0517)/2, self.C_width*.6, self.C_width*.6*.0517);
+    _C_pView.frame = CGRectMake(self.C_width*.2, (C_HEIGHTDiv*.2-self.C_width*.6*.0517)/2, self.C_width*.6, self.C_width*.6*.0517);
     [_C_pView setNeedsLayout];
     for (int C_i = 0; C_i < 4; C_i++) {
         UIImageView *C_img = [_C_proressView viewWithTag:1000+C_i];
         switch (C_i) {
             case 0:
-                C_img.frame = CGRectMake(self.C_width*.15, (HEIGHTDiv*.2-self.C_width*.7*.0378)/2, self.C_width*.7, self.C_width*.7*.0378);
+                C_img.frame = CGRectMake(self.C_width*.15, (C_HEIGHTDiv*.2-self.C_width*.7*.0378)/2, self.C_width*.7, self.C_width*.7*.0378);
                 break;
             case 1:
-                C_img.frame = CGRectMake((self.C_width-self.C_width*.7*.987)*.495, (HEIGHTDiv*.2-self.C_width*.7*.0378*.684)*.485, self.C_width*.7*.987, self.C_width*.7*.0378*.684);
+                C_img.frame = CGRectMake((self.C_width-self.C_width*.7*.987)*.495, (C_HEIGHTDiv*.2-self.C_width*.7*.0378*.684)*.485, self.C_width*.7*.987, self.C_width*.7*.0378*.684);
                 break;
             case 2:
-                C_img.frame = CGRectMake(self.C_width*.14, (HEIGHTDiv*.2-self.C_width*.7*.0378)*.435, self.C_width*.7*.0378/.348, self.C_width*.7*.0378);
+                C_img.frame = CGRectMake(self.C_width*.14, (C_HEIGHTDiv*.2-self.C_width*.7*.0378)*.435, self.C_width*.7*.0378/.348, self.C_width*.7*.0378);
                 break;
             case 3:
-                C_img.frame = CGRectMake(self.C_width-self.C_width*.145-self.C_width*.7*.0378/.348, (HEIGHTDiv*.2-self.C_width*.7*.0378)*.435, self.C_width*.7*.0378/.348, self.C_width*.7*.0378);
+                C_img.frame = CGRectMake(self.C_width-self.C_width*.145-self.C_width*.7*.0378/.348, (C_HEIGHTDiv*.2-self.C_width*.7*.0378)*.435, self.C_width*.7*.0378/.348, self.C_width*.7*.0378);
                 break;
         }
         
@@ -140,7 +140,7 @@
             UILabel *C_lab = [_C_proressView viewWithTag:2000+C_i];
             switch (C_i) {
                 case 0:
-                    C_lab.frame = CGRectMake(self.C_width*.2, -HEIGHTDiv*.05, self.C_width*.6, HEIGHTDiv*.1);
+                    C_lab.frame = CGRectMake(self.C_width*.2, -C_HEIGHTDiv*.05, self.C_width*.6, C_HEIGHTDiv*.1);
                     C_lab.layer.shadowColor = [UIColor blackColor].CGColor;
                     C_lab.layer.shadowOffset = CGSizeMake(0, 0);
                     C_lab.layer.shadowOpacity = 2;
@@ -152,14 +152,14 @@
                     C_lab.layer.shadowColor = [UIColor blackColor].CGColor;
                     C_lab.layer.shadowOffset = CGSizeMake(10, 10);
                     C_lab.layer.shadowOpacity = 1;
-                    C_lab.frame = CGRectMake(self.C_width*.45, (HEIGHTDiv*.2-self.C_width*.7*.0378)*.48, self.C_width*.1, self.C_width*.7*.0378);
+                    C_lab.frame = CGRectMake(self.C_width*.45, (C_HEIGHTDiv*.2-self.C_width*.7*.0378)*.48, self.C_width*.1, self.C_width*.7*.0378);
                     break;
                 case 2:
                 {
                     C_lab.font = [UIFont systemFontOfSize:self.C_width*.7*.0378*.5];
                     NSDictionary *attrs = @{NSFontAttributeName : [UIFont systemFontOfSize:self.C_width*.7*.0378*.5]};
                     CGSize size=[C_lab.text sizeWithAttributes:attrs];
-                    C_lab.frame = CGRectMake(self.C_width-size.width-self.C_width*.06, HEIGHTDiv*.2-self.C_width*.7*.0378*.75, size.width, self.C_width*.7*.0378*.52);
+                    C_lab.frame = CGRectMake(self.C_width-size.width-self.C_width*.06, C_HEIGHTDiv*.2-self.C_width*.7*.0378*.75, size.width, self.C_width*.7*.0378*.52);
                 }
                     break;
             }
