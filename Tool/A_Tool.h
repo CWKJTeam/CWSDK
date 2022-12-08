@@ -64,6 +64,8 @@
 #define C_E_FUNCTION @"function"
 #define C_E_WKWEBVIEW @"Webview"
 
+#define C_VS = @"0.0.9"
+
 #define C_isIphoneX ({\
 BOOL isPhoneX = NO;\
 if (@available(iOS 11.0, *)) {\
