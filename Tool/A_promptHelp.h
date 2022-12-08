@@ -13,7 +13,7 @@ typedef void (^finishBlock)(int tag);
 
 @interface A_promptHelp : NSObject
 
-+(void)B_show:(NSString *)str view:(UIView *)view options:(NSArray *)options finishBack:(finishBlock)block animated:(BOOL)animated;
++(void)B_show:(NSString *)str view:(UIView *)C_view options:(NSArray *)C_options finishBack:(finishBlock)C_block animated:(BOOL)C_animated;
 
 @end
 

@@ -10,25 +10,26 @@
 
 @implementation A_JHLabel
 
-- (void)drawTextInRect:(CGRect)rect {
+- (void)drawTextInRect:(CGRect)C_rect {
  
-   CGSize shadowOffset = self.shadowOffset;
-   UIColor *textColor = self.textColor;
+   CGSize C_shadowOffset = self.shadowOffset;
+   UIColor *C_textColor = self.textColor;
  
-   CGContextRef c = UIGraphicsGetCurrentContext();
-   CGContextSetLineWidth(c, 2);
-   CGContextSetLineJoin(c, kCGLineJoinRound);
+   CGContextRef C_c = UIGraphicsGetCurrentContext();
+   CGContextSetLineWidth(C_c, 2);
+   CGContextSetLineJoin(C_c, kCGLineJoinRound);
  
-   CGContextSetTextDrawingMode(c, kCGTextStroke);
+   CGContextSetTextDrawingMode(C_c, kCGTextStroke);
    self.textColor = [UIColor blueColor];
-   [super drawTextInRect:rect];
+   [super drawTextInRect:C_rect];
  
-   CGContextSetTextDrawingMode(c, kCGTextFill);
-   self.textColor = textColor;
+   CGContextSetTextDrawingMode(C_c, kCGTextFill);
+   self.textColor = C_textColor;
    self.shadowOffset = CGSizeMake(0, 0);
-   [super drawTextInRect:rect];
+   [super drawTextInRect:C_rect];
  
-   self.shadowOffset = shadowOffset;
+   self.shadowOffset = C_shadowOffset;
  
 }
+
 @end

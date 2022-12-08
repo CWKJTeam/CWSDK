@@ -10,11 +10,11 @@
 #import "UIView+A_Frame.h"
 #import "A_Tool.h"
 
-@interface MJpromptView : UIView
+@interface A_MJpromptView : UIView
 
 
 
-- (instancetype)initWithTipString:(NSString *)TipString image:(id)obj options:(NSArray *)options type:(int)type animated:(BOOL)animated;
+- (instancetype)initWithTipString:(NSString *)C_TipString image:(id)C_obj options:(NSArray *)C_options type:(int)C_type animated:(BOOL)C_animated;
 
 @property(nonatomic,assign)int C_type;
 
@@ -28,7 +28,7 @@
 
 @end
 
-@interface MJpromptView ()
+@interface A_MJpromptView ()
 
 @property(nonatomic,strong)A_JHLabel *C_tipsLab;
 
@@ -42,9 +42,9 @@
 
 @end
 
-@implementation MJpromptView
+@implementation A_MJpromptView
 
--(UIFont *)B_getFontWithUnderSix:(float)underSix{
+-(UIFont *)B_getFontWithUnderSix:(float)C_underSix{
     
     CGFloat C_proportion = C_SIX_DIV;
     
@@ -52,10 +52,10 @@
         C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
-    return [UIFont systemFontOfSize:underSix*C_proportion];
+    return [UIFont systemFontOfSize:C_underSix*C_proportion];
 }
 
--(UIFont *)B_getboldFontWithUnderSix:(float)underSix{
+-(UIFont *)B_getboldFontWithUnderSix:(float)C_underSix{
     
     CGFloat C_proportion = C_SIX_DIV;
     
@@ -63,7 +63,7 @@
         C_proportion = (C_WIDTHDiv-C_IPAD_BETWEENS)/375;
     }
     
-    return [UIFont boldSystemFontOfSize:underSix*C_proportion];
+    return [UIFont boldSystemFontOfSize:C_underSix*C_proportion];
 }
 
 
@@ -94,9 +94,9 @@
     return _C_headImg;
 }
 
-- (instancetype)initWithTipString:(NSString *)TipString image:(id)obj options:(NSArray *)options type:(int)type animated:(BOOL)animated
+- (instancetype)B_initWithTipString:(NSString *)C_TipString image:(id)C_obj options:(NSArray *)C_options type:(int)C_type animated:(BOOL)C_animated
 {
-    if (self = [self init]) {
+    if (self == [self init]) {
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:.5];
         float c;
         float d;
@@ -110,14 +110,14 @@
         
         self.frame = CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv);
         _C_animaindex = 0;
-        _C_type = type;
-        _C_tipStr = TipString;
-        _C_image = obj;
-        _C_options = options;
-        _C_animated = animated;
+        _C_type = C_type;
+        _C_tipStr = C_TipString;
+        _C_image = C_obj;
+        _C_options = C_options;
+        _C_animated = C_animated;
         UIButton *clearbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, C_WIDTHDiv, C_HEIGHTDiv)];
         clearbtn.tag = 1098;
-        [clearbtn addTarget:self action:@selector(removeselfBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [clearbtn addTarget:self action:@selector(B_removeselfBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:clearbtn];
         [self addSubview:self.C_bgView];
         if(_C_type == 1){
@@ -132,12 +132,12 @@
         _C_bgView.userInteractionEnabled = YES;
         [_C_bgView addSubview:self.C_headImg];
         [_C_bgView addSubview:self.C_tipsLab];
-        [self initUI];
+        [self B_initUI];
     }
     return self;
 }
 
--(void)initUI{
+-(void)B_initUI{
     
 //    _tipsLab.text = _tipStr;
     _C_tipsLab.attributedText = [[NSAttributedString alloc] initWithString:_C_tipStr attributes:@{
@@ -146,16 +146,16 @@
     }];
     
     _C_headImg.image = [_C_image isKindOfClass:[NSString class]]?[UIImage imageNamed:_C_image]:[_C_image isKindOfClass:[UIImage class]]?_C_image:[UIImage imageNamed:@"bg"];
-    NSArray *fs = @[@(1.0),@(1.3),@(0.9),@(1.1)];
-    NSArray *ts = @[@(1.3),@(0.9),@(1.1),@(1.0)];
-    NSArray *ds = @[@(.2),@(.1),@(.2),@(.1)];
+    NSArray *C_fs = @[@(1.0),@(1.3),@(0.9),@(1.1)];
+    NSArray *C_ts = @[@(1.3),@(0.9),@(1.1),@(1.0)];
+    NSArray *C_ds = @[@(.2),@(.1),@(.2),@(.1)];
     
     switch (_C_type) {
         case 4:
         {
             _C_bgView.frame = CGRectMake((self.C_width-self.C_height*.388/.75)/2, (self.C_height-self.C_height*.388)/2, self.C_height*.388/.75, self.C_height*.388);
-            UIButton *clearbtn = [self viewWithTag:1098];
-            clearbtn.userInteractionEnabled = NO;
+            UIButton *C_clearbtn = [self viewWithTag:1098];
+            C_clearbtn.userInteractionEnabled = NO;
             
             _C_bgView.backgroundColor = [UIColor clearColor];
             
@@ -175,7 +175,7 @@
             if(_C_animated){
                 NSString *version = [UIDevice currentDevice].systemVersion;
                 if (version.doubleValue >= 10.0) {
-                    [self fs:fs ts:ts ds:ds];
+                    [self B_fs:C_fs ts:C_ts ds:C_ds];
                 }
             }
         }
@@ -206,34 +206,34 @@
                 NSForegroundColorAttributeName : [UIColor whiteColor],
                 NSFontAttributeName : [self B_getFontWithUnderSix:C_IS_PAD?24:28]
             }];
-            float btnw = C_HEIGHTDiv*.15;
-            float btnh = C_HEIGHTDiv*.15;
-            float jianxi = (_C_bgView.C_width - btnw*2)/5.0;
+            float C_btnw = C_HEIGHTDiv*.15;
+            float C_btnh = C_HEIGHTDiv*.15;
+            float C_jianxi = (_C_bgView.C_width - C_btnw*2)/5.0;
             
             
-            UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(_C_bgView.C_width*.05, _C_tipsLab.C_bottom, _C_bgView.C_width*.9, _C_bgView.C_height-_C_bgView.C_height*.3-btnh)];
-            lab.textAlignment = NSTextAlignmentCenter;
-            lab.textColor = [UIColor whiteColor];
-            lab.font = [self B_getFontWithUnderSix:C_IS_PAD?16:20];
-            lab.text = [[_C_tipStr componentsSeparatedByString:@"&&"] lastObject];
-            [_C_bgView addSubview:lab];
+            UILabel *C_lab = [[UILabel alloc]initWithFrame:CGRectMake(_C_bgView.C_width*.05, _C_tipsLab.C_bottom, _C_bgView.C_width*.9, _C_bgView.C_height-_C_bgView.C_height*.3-C_btnh)];
+            C_lab.textAlignment = NSTextAlignmentCenter;
+            C_lab.textColor = [UIColor whiteColor];
+            C_lab.font = [self B_getFontWithUnderSix:C_IS_PAD?16:20];
+            C_lab.text = [[_C_tipStr componentsSeparatedByString:@"&&"] lastObject];
+            [_C_bgView addSubview:C_lab];
             
 //            NSArray *btnImgs = @[@"player/tips/2",@"player/tips/2"];
             
             
             
             for (int i = 0; i < _C_options.count; i++) {
-                UIButton *btn = [[UIButton alloc]initWithFrame:(_C_options.count == 2)?CGRectMake(jianxi*2+(_C_options.count-1-i)*(jianxi+btnw), (_C_bgView.C_height-btnh)*.55, btnw, btnh):CGRectMake((_C_bgView.C_width - btnw)/2.0, _C_bgView.C_height-btnh*1.45, btnw, btnh)];
-                btn.tag = 300+i;
-                [btn setBackgroundImage:[UIImage imageNamed:_C_options[i]] forState:UIControlStateNormal];
-                [btn addTarget:self action:@selector(promptBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                [_C_bgView addSubview:btn];
+                UIButton *C_btn = [[UIButton alloc]initWithFrame:(_C_options.count == 2)?CGRectMake(C_jianxi*2+(_C_options.count-1-i)*(C_jianxi+C_btnw), (_C_bgView.C_height-C_btnh)*.55, C_btnw, C_btnh):CGRectMake((_C_bgView.C_width - C_btnw)/2.0, _C_bgView.C_height-C_btnh*1.45, C_btnw, C_btnh)];
+                C_btn.tag = 300+i;
+                [C_btn setBackgroundImage:[UIImage imageNamed:_C_options[i]] forState:UIControlStateNormal];
+                [C_btn addTarget:self action:@selector(B_promptBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [_C_bgView addSubview:C_btn];
             }
             
             if(_C_animated){
                 NSString *version = [UIDevice currentDevice].systemVersion;
                 if (version.doubleValue >= 10.0) {
-                    [self fs:fs ts:ts ds:ds];
+                    [self B_fs:C_fs ts:C_ts ds:C_ds];
                 }
             }
         }
@@ -242,64 +242,64 @@
     }
 }
 
--(void)showTimeBtnClick:(UIButton *)sender{
+-(void)B_showTimeBtnClick:(UIButton *)C_sender{
     
-    if(sender.tag - 300 != 6){
+    if(C_sender.tag - 300 != 6){
         
-        for (int i = 0; i < 6; i++){
-            UIButton *btn = [_C_bgView viewWithTag:300+i];
-            UIView *view = [btn viewWithTag:1000+i];
-            if(sender.tag - 300 == i){
-                view.backgroundColor = [UIColor whiteColor];
-                view.layer.masksToBounds = YES;
-                view.layer.borderColor = [UIColor colorWithRed:57/255.0 green:131/255.0 blue:224/255.0 alpha:1].CGColor;
-                view.layer.borderWidth = view.C_width/4;
+        for (int C_i = 0; C_i < 6; C_i++){
+            UIButton *C_btn = [_C_bgView viewWithTag:300+C_i];
+            UIView *C_view = [C_btn viewWithTag:1000+C_i];
+            if(C_sender.tag - 300 == C_i){
+                C_view.backgroundColor = [UIColor whiteColor];
+                C_view.layer.masksToBounds = YES;
+                C_view.layer.borderColor = [UIColor colorWithRed:57/255.0 green:131/255.0 blue:224/255.0 alpha:1].CGColor;
+                C_view.layer.borderWidth = C_view.C_width/4;
             }else{
-                view.backgroundColor = [UIColor colorWithRed:148/255.0 green:197/255.0 blue:232/255.0 alpha:1];
-                view.layer.masksToBounds = YES;
-                view.layer.borderColor = [UIColor clearColor].CGColor;
-                view.layer.borderWidth = 0;
+                C_view.backgroundColor = [UIColor colorWithRed:148/255.0 green:197/255.0 blue:232/255.0 alpha:1];
+                C_view.layer.masksToBounds = YES;
+                C_view.layer.borderColor = [UIColor clearColor].CGColor;
+                C_view.layer.borderWidth = 0;
             }
         }
         if(_block){
-            _block((int)sender.tag - 300);
+            _block((int)C_sender.tag - 300);
         }
     }else{
         [self removeFromSuperview];
     }
 }
 
--(void)removeselfBtnClick{
+-(void)B_removeselfBtnClick{
     [self removeFromSuperview];
 }
 
--(void)promptBtnClick:(UIButton *)sender{
+-(void)B_promptBtnClick:(UIButton *)sender{
     [self removeFromSuperview];
     if(_block){
         _block((int)sender.tag - 300);
     }
 }
 
--(void)fs:(NSArray*)fs ts:(NSArray*)ts ds:(NSArray*)ds{
-    CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation.fromValue=[NSNumber numberWithFloat:[fs[_C_animaindex] doubleValue]];
-    animation.toValue=[NSNumber numberWithFloat:[ts[_C_animaindex] doubleValue]];
-    animation.duration=[ds[_C_animaindex] doubleValue];
-    animation.autoreverses=NO;
-    animation.repeatCount=1;
-    animation.removedOnCompletion=NO;
-    animation.fillMode=kCAFillModeForwards;
-    [_C_bgView.layer addAnimation:animation forKey:@"zoom"];
-    [NSTimer scheduledTimerWithTimeInterval:[ds[_C_animaindex] doubleValue] repeats:NO block:^(NSTimer * _Nonnull timer) {
-        if(_C_animaindex == 3){
-            if(_C_options.count == 0){
-                double seconds = 0.5;
-                seconds += _C_tipStr.length*0.15;
-                if (seconds>3.0) {
-                    seconds = 3.0;
+-(void)B_fs:(NSArray*)C_fs ts:(NSArray*)C_ts ds:(NSArray*)C_ds{
+    CABasicAnimation *C_animation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    C_animation.fromValue=[NSNumber numberWithFloat:[C_fs[_C_animaindex] doubleValue]];
+    C_animation.toValue=[NSNumber numberWithFloat:[C_ts[_C_animaindex] doubleValue]];
+    C_animation.duration=[C_ds[_C_animaindex] doubleValue];
+    C_animation.autoreverses=NO;
+    C_animation.repeatCount=1;
+    C_animation.removedOnCompletion=NO;
+    C_animation.fillMode=kCAFillModeForwards;
+    [_C_bgView.layer addAnimation:C_animation forKey:@"zoom"];
+    [NSTimer scheduledTimerWithTimeInterval:[C_ds[_C_animaindex] doubleValue] repeats:NO block:^(NSTimer * _Nonnull timer) {
+        if(self->_C_animaindex == 3){
+            if(self->_C_options.count == 0){
+                double C_seconds = 0.5;
+                C_seconds += self->_C_tipStr.length*0.15;
+                if (C_seconds>3.0) {
+                    C_seconds = 3.0;
                 }
-                if (seconds < 1) {
-                    seconds += 0.5;
+                if (C_seconds < 1) {
+                    C_seconds += 0.5;
                 }
                 
                     [NSTimer scheduledTimerWithTimeInterval:.4 repeats:NO block:^(NSTimer * _Nonnull timer) {
@@ -328,7 +328,7 @@
             return;
         }
         _C_animaindex++;
-        [self fs:fs ts:ts ds:ds];
+        [self B_fs:C_fs ts:C_ts ds:C_ds];
     }];
 }
 
@@ -346,19 +346,19 @@
 
 
 +(void)B_MJshow:(NSString *)str view:(UIView *)view options:(NSArray *)options finishBack:(MJfinishBlock)block animated:(BOOL)animated{
-    MJpromptView *pView = [[MJpromptView alloc]initWithTipString:str image:nil options:options type:0 animated:animated];
+    A_MJpromptView *pView = [[A_MJpromptView alloc] B_initWithTipString:str image:nil options:options type:0 animated:animated];
     pView.block = (^(int tag){
         block(tag);
     });
     [view addSubview:pView];
 }
 
-+(void)B_MJshowTimeView:(UIView *)view finishBack:(MJfinishBlock)block {
-    MJpromptView *pView = [[MJpromptView alloc]initWithTipString:@"3" image:@"naozhong" options:@[] type:4 animated:YES];
-    pView.block = (^(int tag){
-        block(tag);
++(void)B_MJshowTimeView:(UIView *)C_view finishBack:(MJfinishBlock)C_block {
+    A_MJpromptView *C_pView = [[A_MJpromptView alloc] B_initWithTipString:@"3" image:@"naozhong" options:@[] type:4 animated:YES];
+    C_pView.block = (^(int C_tag){
+        C_block(C_tag);
     });
-    [view addSubview:pView];
+    [C_view addSubview:C_pView];
 }
 
 -(void)dealloc{

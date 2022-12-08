@@ -455,7 +455,7 @@
 				6C52896A2769D36B004F5E2B /* A_JHProgressView.m */,
 				6CCFDCD8288E3287001D932D /* A_KeyChainStore.h */,
 				6CCFDCD9288E3287001D932D /* A_KeyChainStore.m */,
-				6CE9DB5327634C640088B894 /* TYDownloadManager */,
+				6CE9DB5327634C640088B894 /* TYDlManager */,
 				6C75EC1C275DC23500953C0A /* WebServer */,
 				6C75EC21275DC23500953C0A /* ClassCategory */,
 				5840E0B7292CDAEB000D1980 /* A_Tool.h */,
@@ -539,7 +539,7 @@
 			path = ProjectB;
 			sourceTree = "<group>";
 		};
-		6CE9DB5327634C640088B894 /* TYDownloadManager */ = {
+		6CE9DB5327634C640088B894 /* TYDlManager */ = {
 			isa = PBXGroup;
 			children = (
 				6CE9DB5927634C640088B894 /* A_TYDLDataManager.h */,
@@ -554,7 +554,7 @@
 				6CE9DB5D27634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.h */,
 				6CE9DB5827634C640088B894 /* NSURLSession+A_TYCorrectedResumeData.m */,
 			);
-			path = TYDownloadManager;
+			path = TYDlManager;
 			sourceTree = "<group>";
 		};
 		B2988E62292C580E00C89720 /* image */ = {

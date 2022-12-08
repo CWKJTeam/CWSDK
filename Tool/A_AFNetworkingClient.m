@@ -38,12 +38,12 @@
 // post
 +(void)B_postWithPath:(NSString *)path WithParams:(NSDictionary *)params withCallBack:(HDCallBack)myCallback{
     NSString *fullUrl = path;
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 10;
-    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [A_AFNetworkingClient setHeader:manager fullUrl:fullUrl];
-    [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [manager POST:fullUrl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
+    C_manager.requestSerializer.timeoutInterval = 10;
+    [C_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [A_AFNetworkingClient setHeader:C_manager fullUrl:fullUrl];
+    [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
+    [C_manager POST:fullUrl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         myCallback(dic);
@@ -53,21 +53,21 @@
 }
 
 //Get
-+(void)B_getWithPath:(NSString *)path withCallBack:(HDCallBack)myCallback
++(void)B_getWithPath:(NSString *)C_path withCallBack:(HDCallBack)C_myCallback
 {
-    NSString *fullUrl = path;
+    NSString *C_fullUrl = C_path;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 20;
 //    [AFNetworkingClient setHeader:manager fullUrl:fullUrl];
 //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [manager GET:fullUrl parameters:nil progress:^(NSProgress * _Nonnull DLProgress) {
+    [manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        myCallback(dic);
+        C_myCallback(dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        myCallback(error);
+        C_myCallback(error);
     }];
 }
 
@@ -122,54 +122,54 @@
     [manager.requestSerializer setValue:@"app" forHTTPHeaderField:@"client-type"];
 }
 
-+(NSString *)B_getOrderParam:(NSString *)param
++(NSString *)B_getOrderParam:(NSString *)C_param
 {
-    if(!param || [param isEqualToString:@""])
+    if(!C_param || [C_param isEqualToString:@""])
         return @"";
-    NSMutableArray *arrKey  =[[NSMutableArray alloc]init];
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-    NSArray *arrParam = [param componentsSeparatedByString:@"&"];
-    for (int i=0; i<arrParam.count; i++) {
-        NSString *strParam = arrParam[i];
-        NSArray *arrChildParam = [strParam componentsSeparatedByString:@"="];
-        if(arrChildParam.count>1)
+    NSMutableArray *C_arrKey  =[[NSMutableArray alloc]init];
+    NSMutableDictionary * C_dict = [[NSMutableDictionary alloc]init];
+    NSArray *C_arrParam = [C_param componentsSeparatedByString:@"&"];
+    for (int i=0; i<C_arrParam.count; i++) {
+        NSString *C_strParam = C_arrParam[i];
+        NSArray *C_arrChildParam = [C_strParam componentsSeparatedByString:@"="];
+        if(C_arrChildParam.count>1)
         {
-            NSString *key = arrChildParam[0];
-            NSString *value = [A_AFNetworkingClient B_encodeParam:arrChildParam[1]];
-            if(value && ![value isEqualToString:@""])
+            NSString *C_key = C_arrChildParam[0];
+            NSString *C_value = [A_AFNetworkingClient B_encodeParam:C_arrChildParam[1]];
+            if(C_value && ![C_value isEqualToString:@""])
             {
-                [arrKey addObject:key];
-                [dict setObject:value forKey:key];
+                [C_arrKey addObject:C_key];
+                [C_dict setObject:C_value forKey:C_key];
             }
         }
     }
     //按字母顺序排序
-    NSArray *sortedArray = [arrKey sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj1 compare:obj2 options:NSNumericSearch];
+    NSArray *C_sortedArray = [C_arrKey sortedArrayUsingComparator:^NSComparisonResult(id C_obj1, id C_obj2) {
+        return [C_obj1 compare:C_obj2 options:NSNumericSearch];
     }];
     
-    NSMutableString *mutableString = [[NSMutableString alloc]init];
-    for (NSString *strKey in sortedArray) {
-        NSString *value = [dict objectForKey:strKey];
-        if(mutableString.length>0)
+    NSMutableString *C_mutableString = [[NSMutableString alloc]init];
+    for (NSString *C_strKey in C_sortedArray) {
+        NSString *C_value = [C_dict objectForKey:C_strKey];
+        if(C_mutableString.length>0)
         {
-            [mutableString appendFormat:@"&%@=%@",strKey,value];
+            [C_mutableString appendFormat:@"&%@=%@",C_strKey,C_value];
         }
         else
         {
-            [mutableString appendFormat:@"%@=%@",strKey,value];
+            [C_mutableString appendFormat:@"%@=%@",C_strKey,C_value];
         }
     }
 
-    return mutableString;
+    return C_mutableString;
 }
 
-+(NSString *)B_encodeParam:(NSString *)strValue
++(NSString *)B_encodeParam:(NSString *)C_strValue
 {
-    NSString * charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
-    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:charaters] invertedSet];
-    NSString * hString2 = [strValue stringByAddingPercentEncodingWithAllowedCharacters:set];
-    return hString2;
+    NSString * C_charaters = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+    NSCharacterSet * C_set = [[NSCharacterSet characterSetWithCharactersInString:C_charaters] invertedSet];
+    NSString * C_hString2 = [C_strValue stringByAddingPercentEncodingWithAllowedCharacters:C_set];
+    return C_hString2;
 }
 
 

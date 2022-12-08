@@ -10,6 +10,7 @@
 #import "UIImage+A_setImageStrName.h"
 #import "UIView+A_Frame.h"
 @interface A_JHProgressView ()
+
 @property(nonatomic,weak)UIView *C_GifView;
 @end
 

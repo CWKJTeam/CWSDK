@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // 下载状态
-typedef NS_ENUM(NSUInteger, TYDLState) {
+typedef NS_ENUM(NSUInteger, A_TYDLState) {
     C_TYDLStateNone,        // 未下载 或 下载删除了
     C_TYDLStateReadying,    // 等待下载
     C_TYDLStateRunning,     // 正在下载
@@ -18,13 +18,13 @@ typedef NS_ENUM(NSUInteger, TYDLState) {
     C_TYDLStateFailed       // 下载失败
 };
 
-@class TYDLProgress;
+@class A_TYDLProgress;
 @class A_TYDLModel;
 
 // 进度更新block
-typedef void (^TYDLProgressBlock)(TYDLProgress *progress);
+typedef void (^TYDLProgressBlock)(A_TYDLProgress *progress);
 // 状态更新block
-typedef void (^TYDLStateBlock)(TYDLState state,NSString *filePath, NSError *error);
+typedef void (^TYDLStateBlock)(A_TYDLState state,NSString *filePath, NSError *error);
 
 /**
  *  下载模型
@@ -41,13 +41,13 @@ typedef void (^TYDLStateBlock)(TYDLState state,NSString *filePath, NSError *erro
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>  task info
 // 下载状态
-@property (nonatomic, assign, readonly) TYDLState C_state;
+@property (nonatomic, assign, readonly) A_TYDLState C_state;
 // 下载任务
 @property (nonatomic, strong, readonly) NSURLSessionTask *C_task;
 // 文件流
 @property (nonatomic, strong, readonly) NSOutputStream *C_stream;
 // 下载进度
-@property (nonatomic, strong ,readonly) TYDLProgress *C_progress;
+@property (nonatomic, strong ,readonly) A_TYDLProgress *C_progress;
 // 下载路径 如果设置了DLDirectory，文件下载完成后会移动到这个目录，否则，在manager默认cache目录里
 @property (nonatomic, strong, readonly) NSString *C_filePath;
 
@@ -74,7 +74,7 @@ typedef void (^TYDLStateBlock)(TYDLState state,NSString *filePath, NSError *erro
 /**
  *  下载进度
  */
-@interface TYDLProgress : NSObject
+@interface A_TYDLProgress : NSObject
 
 // 续传大小
 @property (nonatomic, assign, readonly) int64_t C_resumeBytesWritten;

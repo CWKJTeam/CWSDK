@@ -8,7 +8,7 @@
 
 #import "A_TYDLModel.h"
 
-@interface TYDLProgress ()
+@interface A_TYDLProgress ()
 // 续传大小
 @property (nonatomic, assign) int64_t C_resumeBytesWritten;
 // 这次写入的数量
@@ -38,7 +38,7 @@
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>  task info
 // 下载状态
-@property (nonatomic, assign) TYDLState C_state;
+@property (nonatomic, assign) A_TYDLState C_state;
 // 下载任务
 @property (nonatomic, strong) NSURLSessionTask *C_task;
 // 文件流
@@ -59,7 +59,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _C_progress = [[TYDLProgress alloc]init];
+        _C_progress = [[A_TYDLProgress alloc]init];
     }
     return self;
 }
@@ -118,6 +118,6 @@
 
 @end
 
-@implementation TYDLProgress
+@implementation A_TYDLProgress
 
 @end

@@ -15,7 +15,7 @@
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>  task info
 // 下载状态
-@property (nonatomic, assign) TYDLState C_state;
+@property (nonatomic, assign) A_TYDLState C_state;
 // 下载任务
 @property (nonatomic, strong) NSURLSessionDataTask *C_task;
 // 文件流
@@ -32,7 +32,7 @@
 /**
  *  下载进度
  */
-@interface TYDLProgress ()
+@interface A_TYDLProgress ()
 // 续传大小
 @property (nonatomic, assign) int64_t C_resumeBytesWritten;
 // 这次写入的数量
@@ -419,9 +419,9 @@
 }
 
 // 当前下载进度
-- (TYDLProgress *)B_progessWithDLModel:(A_TYDLModel *)C_DLModel
+- (A_TYDLProgress *)B_progessWithDLModel:(A_TYDLModel *)C_DLModel
 {
-    TYDLProgress *C_progress = [[TYDLProgress alloc]init];
+    A_TYDLProgress *C_progress = [[A_TYDLProgress alloc]init];
     C_progress.C_totalBytesExpectedToWrite = [self B_fileSizeInCachePlistWithDLModel:C_DLModel];
     C_progress.C_totalBytesWritten = MIN([self B_fileSizeWithDLModel:C_DLModel], C_progress.C_totalBytesExpectedToWrite);
     C_progress.C_progress = C_progress.C_totalBytesExpectedToWrite > 0 ? 1.0*C_progress.C_totalBytesWritten/C_progress.C_totalBytesExpectedToWrite : 0;
@@ -431,7 +431,7 @@
 
 #pragma mark - private
 
-- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(TYDLState)C_state filePath:(NSString *)C_filePath error:(NSError *)C_error
+- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(A_TYDLState)C_state filePath:(NSString *)C_filePath error:(NSError *)C_error
 {
     if (_C_delegate && [_C_delegate respondsToSelector:@selector(B_DLModel:didChangeState:filePath:error:)]) {
         [_C_delegate B_DLModel:C_DLModel didChangeState:C_state filePath:C_filePath error:C_error];
@@ -442,7 +442,7 @@
     }
 }
 
-- (void)B_DLModel:(A_TYDLModel *)C_DLModel updateProgress:(TYDLProgress *)C_progress
+- (void)B_DLModel:(A_TYDLModel *)C_DLModel updateProgress:(A_TYDLProgress *)C_progress
 {
     if (_C_delegate && [_C_delegate respondsToSelector:@selector(B_DLModel:didUpdateProgress:)]) {
         [_C_delegate B_DLModel:C_DLModel didUpdateProgress:C_progress];

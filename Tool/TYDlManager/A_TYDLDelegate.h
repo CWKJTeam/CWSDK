@@ -13,9 +13,9 @@
 @protocol A_TYDLDelegate <NSObject>
 
 // 更新下载进度
-- (void)B_DLModel:(A_TYDLModel *)C_DlModel didUpdateProgress:(TYDLProgress *)C_progress;
+- (void)B_DLModel:(A_TYDLModel *)C_DlModel didUpdateProgress:(A_TYDLProgress *)C_progress;
 
 // 更新下载状态
-- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(TYDLState)state filePath:(NSString *)C_filePath error:(NSError *)C_error;
+- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(A_TYDLState)state filePath:(NSString *)C_filePath error:(NSError *)C_error;
 
 @end

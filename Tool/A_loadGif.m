@@ -112,40 +112,40 @@
 
 +(void)B_show:(UIView *)view imgStr:(NSString *)imgStr repeat:(BOOL)repeat speed:(int)speed imgCount:(int)imgCount rect:(CGRect)rect{
     if(![view viewWithTag:767]){
-        PlayerLoadingView *_plview = [[PlayerLoadingView alloc]initWithFrame:rect];
-        _plview.C_nameStr = imgStr;
-        _plview.C_IMAGE_COUNT = imgCount;
-        _plview.C_speed = speed;
-        _plview.tag = 767;
-        [view addSubview:_plview];
-        _plview.C_repeat = repeat;
-        [_plview B_startLoading];
+        PlayerLoadingView *_C_plview = [[PlayerLoadingView alloc]initWithFrame:rect];
+        _C_plview.C_nameStr = imgStr;
+        _C_plview.C_IMAGE_COUNT = imgCount;
+        _C_plview.C_speed = speed;
+        _C_plview.tag = 767;
+        [view addSubview:_C_plview];
+        _C_plview.C_repeat = repeat;
+        [_C_plview B_startLoading];
     }else{
-        PlayerLoadingView *_plview = [view viewWithTag:767];
-        _plview.frame = rect;
-        _plview.C_nameStr = imgStr;
-        _plview.C_IMAGE_COUNT = imgCount;
-        _plview.C_speed = speed;
-        _plview.tag = 767;
-        _plview.C_repeat = repeat;
-        [_plview B_startLoading];
+        PlayerLoadingView *_C_plview = [view viewWithTag:767];
+        _C_plview.frame = rect;
+        _C_plview.C_nameStr = imgStr;
+        _C_plview.C_IMAGE_COUNT = imgCount;
+        _C_plview.C_speed = speed;
+        _C_plview.tag = 767;
+        _C_plview.C_repeat = repeat;
+        [_C_plview B_startLoading];
     }
 }
 
 +(void)B_show:(UIView *)view imgStr:(NSString *)imgStr repeat:(BOOL)repeat speed:(int)speed imgCount:(int)imgCount rect:(CGRect)rect bolck:(giflock)block{
     if(![view viewWithTag:767]){
-        PlayerLoadingView *_plview = [[PlayerLoadingView alloc]initWithFrame:rect];
-        _plview.C_nameStr = imgStr;
-        _plview.C_IMAGE_COUNT = imgCount;
-        _plview.C_speed = speed;
-        _plview.tag = 767;
-        _plview.block = (^(UIView *view){
+        PlayerLoadingView *_C_plview = [[PlayerLoadingView alloc]initWithFrame:rect];
+        _C_plview.C_nameStr = imgStr;
+        _C_plview.C_IMAGE_COUNT = imgCount;
+        _C_plview.C_speed = speed;
+        _C_plview.tag = 767;
+        _C_plview.block = (^(UIView *view){
             block(view);
         });
-        _plview.C_repeat = repeat;
-        [view addSubview:_plview];
+        _C_plview.C_repeat = repeat;
+        [view addSubview:_C_plview];
         
-        [_plview B_startLoading];
+        [_C_plview B_startLoading];
     }else{
         PlayerLoadingView *_plview = [view viewWithTag:767];
         _plview.frame = rect;
@@ -162,12 +162,12 @@
 }
 
 +(void)B_cloose:(UIView *)view{
-    PlayerLoadingView *_plview = [view viewWithTag:767];
-    _plview.C_displayLink.paused = YES;
-    _plview.C_displayLink = nil;
-    [_plview.C_images removeAllObjects];
-    [_plview.C_displayLink invalidate];
-    [_plview removeFromSuperview];
+    PlayerLoadingView *_C_plview = [view viewWithTag:767];
+    _C_plview.C_displayLink.paused = YES;
+    _C_plview.C_displayLink = nil;
+    [_C_plview.C_images removeAllObjects];
+    [_C_plview.C_displayLink invalidate];
+    [_C_plview removeFromSuperview];
 }
 
 @end

@@ -59,12 +59,12 @@
 }
 
 // 更新下载进度
-- (void)DLModel:(A_TYDLModel *)DLModel didUpdateProgress:(TYDLProgress *)progress{
+- (void)DLModel:(A_TYDLModel *)DLModel didUpdateProgress:(A_TYDLProgress *)progress{
     
 }
 
 // 更新下载状态
-- (void)DLModel:(A_TYDLModel *)DLModel didChangeState:(TYDLState)state filePath:(NSString *)filePath error:(NSError *)error{
+- (void)DLModel:(A_TYDLModel *)DLModel didChangeState:(A_TYDLState)state filePath:(NSString *)filePath error:(NSError *)error{
     
 }
 
@@ -262,14 +262,14 @@
         }
 //        NSLog(@"%@",[manager isDLCompletedWithDLModel:model]?@"已经下载过了~":@"没有下载过~");
         
-        [C_manager B_startWithDLModel:_C_nonDLs[C_task_id] progress:^(TYDLProgress *C_progress) {
+        [C_manager B_startWithDLModel:_C_nonDLs[C_task_id] progress:^(A_TYDLProgress *C_progress) {
             NSLog(@"progress->>%lf",C_progress.C_progress);
             if (C_isStart) {
                 C_isStart = NO;
                 [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"2",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
             }
             [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"3",@"downloadedSize":@(C_progress.C_totalBytesWritten)}];
-        } state:^(TYDLState C_state, NSString *C_filePath, NSError *C_error) {
+        } state:^(A_TYDLState C_state, NSString *C_filePath, NSError *C_error) {
             if (C_state == C_TYDLStateCompleted) {
                 [self B_toJsonc:C_E_DL B_f:C_E_EVENTLISTENER B_d:@{@"id":C_dic[@"args"][@"id"],@"state":@"4",@"status":@"200"}];
             }else if (C_state == C_TYDLStateSuspended){

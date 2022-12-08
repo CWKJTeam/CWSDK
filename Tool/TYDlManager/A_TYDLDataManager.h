@@ -64,7 +64,7 @@
 - (A_TYDLModel *)B_DLingModelForURLString:(NSString *)C_URLString;
 
 // 获取本地下载模型的进度
-- (TYDLProgress *)B_progessWithDLModel:(A_TYDLModel *)C_DLModel;
+- (A_TYDLProgress *)B_progessWithDLModel:(A_TYDLModel *)C_DLModel;
 
 // 是否已经下载
 - (BOOL)B_isDLCompletedWithDLModel:(A_TYDLModel *)C_DLModel;

@@ -132,11 +132,14 @@
 
 + (instancetype)B_viewFromXib
 {
+    
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil] lastObject];
+    
 }
 
 -(BOOL)B_isShowIngOnKeyWindow
 {
+   
     UIWindow *C_keyWindow = [UIApplication sharedApplication].keyWindow;
     
     CGRect  C_newFrame = [C_keyWindow convertRect:self.frame fromView:self.superview];

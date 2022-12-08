@@ -13,9 +13,9 @@ typedef void (^MJfinishBlock)(int tag);
 
 @interface A_MJpromptHelp : NSObject
 
-+(void)B_MJshow:(NSString *)str view:(UIView *)view options:(NSArray *)options finishBack:(MJfinishBlock)block animated:(BOOL)animated;
++(void)B_MJshow:(NSString *)C_str view:(UIView *)C_view options:(NSArray *)C_options finishBack:(MJfinishBlock)C_block animated:(BOOL)C_animated;
 
-+(void)B_MJshowTimeView:(UIView *)view finishBack:(MJfinishBlock)block;
++(void)B_MJshowTimeView:(UIView *)C_view finishBack:(MJfinishBlock)C_block;
 @end
 
 NS_ASSUME_NONNULL_END

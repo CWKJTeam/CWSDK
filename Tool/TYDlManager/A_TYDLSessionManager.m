@@ -18,7 +18,7 @@
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>  task info
 // 下载状态
-@property (nonatomic, assign) TYDLState C_state;
+@property (nonatomic, assign) A_TYDLState C_state;
 // 下载任务
 @property (nonatomic, strong) NSURLSessionDownloadTask *C_task;
 // 文件流
@@ -37,7 +37,7 @@
 /**
  *  下载进度
  */
-@interface TYDLProgress ()
+@interface A_TYDLProgress ()
 // 续传大小
 @property (nonatomic, assign) int64_t C_resumeBytesWritten;
 // 这次写入的数量
@@ -472,7 +472,7 @@
 
 #pragma mark - private
 
-- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(TYDLState)C_state filePath:(NSString *)C_filePath error:(NSError *)C_error
+- (void)B_DLModel:(A_TYDLModel *)C_DLModel didChangeState:(A_TYDLState)C_state filePath:(NSString *)C_filePath error:(NSError *)C_error
 {
     if (_C_delegate && [_C_delegate respondsToSelector:@selector(B_DLModel:didChangeState:filePath:error:)]) {
         [_C_delegate B_DLModel:C_DLModel didChangeState:C_state filePath:C_filePath error:C_error];
@@ -483,7 +483,7 @@
     }
 }
 
-- (void)B_DLModel:(A_TYDLModel *)C_DLModel updateProgress:(TYDLProgress *)C_progress
+- (void)B_DLModel:(A_TYDLModel *)C_DLModel updateProgress:(A_TYDLProgress *)C_progress
 {
     if (_C_delegate && [_C_delegate respondsToSelector:@selector(B_DLModel:didUpdateProgress:)]) {
         [_C_delegate B_DLModel:C_DLModel didUpdateProgress:C_progress];
