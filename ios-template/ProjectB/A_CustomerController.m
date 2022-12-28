@@ -268,6 +268,8 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)C_challenge
     if(![C_webView.URL.absoluteString isEqualToString:@"about:blank"]){
         [self B_toJsonc:C_E_WKWEBVIEW B_f:C_E_EVENTLISTENER B_d:@{@"id":[NSString B_setSafeString:_C_wk_id],@"event":@"loaded"}];
     }
+    
+
 }
 //提交发生错误时调用
 - (void)webView:(WKWebView *)C_webView didFailNavigation:(WKNavigation *)C_navigation withError:(NSError *)C_error {

@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "CWSDKTool"
-  spec.version      = "0.0.9"
+  spec.version      = "0.1.0"
   spec.summary      = "CW工具库"
 
 

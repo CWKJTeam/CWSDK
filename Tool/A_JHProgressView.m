@@ -50,6 +50,9 @@
     _C_trackView.frame =CGRectMake (0, 0, self.C_width, self.C_height);
     UIView *bgv =[_C_trackView viewWithTag:99];
     bgv.frame = CGRectMake (0, 0,self.C_width,self.C_height);
+    bgv.layer.masksToBounds = YES;
+    bgv.layer.cornerRadius = bgv.C_height/2;
+    
     _C_progressView.frame = CGRectMake (0 - self.C_width, 0, self.C_width, self.C_height);
      
 }
