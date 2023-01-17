@@ -16,21 +16,21 @@
 @implementation A_JHHelp
 
 +(NSString*)B_generateCodeVerifier {
-    uint8_t randomBytes[32];
+    uint8_t C_randomBytes[32];
     
-    int result = SecRandomCopyBytes(kSecRandomDefault, 32, randomBytes);
+    int C_result = SecRandomCopyBytes(kSecRandomDefault, 32, C_randomBytes);
     
-    if (result == 0) {
-        NSData *data = [[NSData alloc] initWithBytes:randomBytes length:32];
+    if (C_result == 0) {
+        NSData *C_data = [[NSData alloc] initWithBytes:C_randomBytes length:32];
         
-        NSString *base64 = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+        NSString *C_base64 = [C_data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
         
-        base64 = [base64 stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
-        base64 = [base64 stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
-        base64 = [base64 stringByReplacingOccurrencesOfString:@"=" withString:@""];
-        base64 = [base64 stringByReplacingOccurrencesOfString:@" " withString:@""];
+        C_base64 = [C_base64 stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
+        C_base64 = [C_base64 stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+        C_base64 = [C_base64 stringByReplacingOccurrencesOfString:@"=" withString:@""];
+        C_base64 = [C_base64 stringByReplacingOccurrencesOfString:@" " withString:@""];
         
-        return base64;
+        return C_base64;
     }
     
     return nil;
@@ -342,12 +342,12 @@
 {
     [C_dicParame setObject:C_VESTID forKey:@"vest_id"];
     [C_dicParame setObject:C_CHANNELID forKey:@"channel_id"];
-    NSMutableString *str = [self B_reqDiction:C_dicParame];
-    NSString *timestr = [self B_transTotimeSp:[self B_getNowTimeTimestamp]];
-    [C_dicParame setObject:timestr forKey:@"stime"];
-    [str appendString:timestr];
-    [str appendString:@"CdO23vdMos23f9l3d2*z2"];
-    [C_dicParame setObject:[self B_md5:str] forKey:@"sign"];
+    NSMutableString *C_str = [self B_reqDiction:C_dicParame];
+    NSString *C_timestr = [self B_transTotimeSp:[self B_getNowTimeTimestamp]];
+    [C_dicParame setObject:C_timestr forKey:@"stime"];
+    [C_str appendString:C_timestr];
+    [C_str appendString:@"CdO23vdMos23f9l3d2*z2"];
+    [C_dicParame setObject:[self B_md5:C_str] forKey:@"sign"];
 }
 
 + (NSMutableString *)B_reqDiction:(NSDictionary *)C_dict{
@@ -386,15 +386,15 @@
 
 + (NSString *) B_md5:(NSString *) C_str
 {
-    const char *cStr = [C_str UTF8String];
-    unsigned char result[16];
-    CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
+    const char *C_cStr = [C_str UTF8String];
+    unsigned char C_result[16];
+    CC_MD5(C_cStr, strlen(C_cStr), C_result); // This is the md5 call
     return [NSString stringWithFormat:
             @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-            result[0], result[1], result[2], result[3],
-            result[4], result[5], result[6], result[7],
-            result[8], result[9], result[10], result[11],
-            result[12], result[13], result[14], result[15]
+            C_result[0], C_result[1], C_result[2], C_result[3],
+            C_result[4], C_result[5], C_result[6], C_result[7],
+            C_result[8], C_result[9], C_result[10], C_result[11],
+            C_result[12], C_result[13], C_result[14], C_result[15]
             ];
 }
 
@@ -631,10 +631,10 @@
 
 
 + (NSString *)B_getCurrentDeviceModel{
-    struct utsname systemInfo;
-    uname(&systemInfo);
+    struct utsname C_systemInfo;
+    uname(&C_systemInfo);
     
-    NSString *C_deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    NSString *C_deviceModel = [NSString stringWithCString:C_systemInfo.machine encoding:NSASCIIStringEncoding];
     
     
  if ([C_deviceModel isEqualToString:@"iPhone3,1"])    return @"iPhone 4";

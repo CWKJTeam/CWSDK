@@ -13,7 +13,7 @@
 typedef void (^HDCallBack)(id obj);
 @interface A_AFNetworkingClient : NSObject
 {
-    NSOperationQueue *_queue;
+    NSOperationQueue *C_queue;
 }
 
 +(void)B_postWithPath:(NSString *)path WithParams:(NSDictionary *)params withCallBack:(HDCallBack)myCallback;

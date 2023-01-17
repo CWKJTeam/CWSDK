@@ -16,38 +16,38 @@
 
 - (NSArray *)sslIdentityAndCertificates {
     
-    SecIdentityRef identityRef = NULL;
-    SecCertificateRef certificateRef = NULL;
-    SecTrustRef trustRef = NULL;
+    SecIdentityRef C_identityRef = NULL;
+    SecCertificateRef C_certificateRef = NULL;
+    SecTrustRef C_trustRef = NULL;
     
-    NSString *thePath = [[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Resource"]] pathForResource:@"localhost" ofType:@"p12"];
-    NSData *PKCS12Data = [[NSData alloc] initWithContentsOfFile:thePath];
-    CFDataRef inPKCS12Data = (__bridge CFDataRef)PKCS12Data;
-    CFStringRef password = CFSTR("b123456");
-    const void *keys[] = { kSecImportExportPassphrase };
-    const void *values[] = { password };
-    CFDictionaryRef optionsDictionary = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
-    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    NSString *C_thePath = [[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Resource"]] pathForResource:@"localhost" ofType:@"p12"];
+    NSData *C_PKCS12Data = [[NSData alloc] initWithContentsOfFile:C_thePath];
+    CFDataRef C_inPKCS12Data = (__bridge CFDataRef)C_PKCS12Data;
+    CFStringRef C_password = CFSTR("b123456");
+    const void *C_keys[] = { kSecImportExportPassphrase };
+    const void *C_values[] = { C_password };
+    CFDictionaryRef C_optionsDictionary = CFDictionaryCreate(NULL, C_keys, C_values, 1, NULL, NULL);
+    CFArrayRef C_items = CFArrayCreate(NULL, 0, 0, NULL);
     
-    OSStatus securityError = errSecSuccess;
-    securityError =  SecPKCS12Import(inPKCS12Data, optionsDictionary, &items);
-    if (securityError == 0) {
-        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex (items, 0);
-        const void *tempIdentity = NULL;
-        tempIdentity = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemIdentity);
-        identityRef = (SecIdentityRef)tempIdentity;
-        const void *tempTrust = NULL;
-        tempTrust = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemTrust);
-        trustRef = (SecTrustRef)tempTrust;
+    OSStatus C_securityError = errSecSuccess;
+    C_securityError =  SecPKCS12Import(C_inPKCS12Data, C_optionsDictionary, &C_items);
+    if (C_securityError == 0) {
+        CFDictionaryRef C_myIdentityAndTrust = CFArrayGetValueAtIndex (C_items, 0);
+        const void *C_tempIdentity = NULL;
+        C_tempIdentity = CFDictionaryGetValue (C_myIdentityAndTrust, kSecImportItemIdentity);
+        C_identityRef = (SecIdentityRef)C_tempIdentity;
+        const void *C_tempTrust = NULL;
+        C_tempTrust = CFDictionaryGetValue (C_myIdentityAndTrust, kSecImportItemTrust);
+        C_trustRef = (SecTrustRef)C_tempTrust;
     } else {
-        NSLog(@"Failed with error code %d",(int)securityError);
+        NSLog(@"Failed with error code %d",(int)C_securityError);
         return nil;
     }
     
-    SecIdentityCopyCertificate(identityRef, &certificateRef);
-    NSArray *result = [[NSArray alloc] initWithObjects:(__bridge id)identityRef, (__bridge id)certificateRef, nil];
+    SecIdentityCopyCertificate(C_identityRef, &C_certificateRef);
+    NSArray *C_result = [[NSArray alloc] initWithObjects:(__bridge id)C_identityRef, (__bridge id)C_certificateRef, nil];
     
-    return result;
+    return C_result;
 }
 
 @end

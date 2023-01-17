@@ -10,25 +10,26 @@
 
 @implementation A_JHLabel
 
-- (void)drawTextInRect:(CGRect)C_rect {
+- (void)drawTextInRect:(CGRect)rect {
  
-   CGSize C_shadowOffset = self.shadowOffset;
-   UIColor *C_textColor = self.textColor;
+   CGSize shadowOffset = self.shadowOffset;
+   UIColor *textColor = self.textColor;
  
-   CGContextRef C_c = UIGraphicsGetCurrentContext();
-   CGContextSetLineWidth(C_c, 2);
-   CGContextSetLineJoin(C_c, kCGLineJoinRound);
+   CGContextRef c = UIGraphicsGetCurrentContext();
+   CGContextSetLineWidth(c, _C_lineWidth);
+   CGContextSetLineJoin(c, kCGLineJoinRound);
  
-   CGContextSetTextDrawingMode(C_c, kCGTextStroke);
-   self.textColor = [UIColor blueColor];
-   [super drawTextInRect:C_rect];
+   CGContextSetTextDrawingMode(c, kCGTextStroke);
+   self.textColor = _C_labelColor;
+//    [UIColor colorWithRed:249.0/255.0 green:192.0/255.0 blue:61.0/255.0 alpha:1]
+   [super drawTextInRect:rect];
  
-   CGContextSetTextDrawingMode(C_c, kCGTextFill);
-   self.textColor = C_textColor;
+   CGContextSetTextDrawingMode(c, kCGTextFill);
+   self.textColor = textColor;
    self.shadowOffset = CGSizeMake(0, 0);
-   [super drawTextInRect:C_rect];
+   [super drawTextInRect:rect];
  
-   self.shadowOffset = C_shadowOffset;
+   self.shadowOffset = shadowOffset;
  
 }
 

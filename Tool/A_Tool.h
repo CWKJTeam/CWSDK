@@ -17,6 +17,7 @@
 #import "A_LocalWebServerManager.h"
 #import "A_SandboxHelp.h"
 #import "A_GameDal.h"
+#import "A_JHLabel.h"
 //#import "SSZipArchive.h"
 #import "A_loadGif.h"
 #import "A_JHProgressView.h"
@@ -30,10 +31,10 @@
 #import "A_appReportExample.h"
 #import "A_KeyChainStore.h"
 
-#define C_VESTID @"500117"
-
-#define C_CHANNELID @"33"
-#define C_CHANNEL_ID @"33"
+//#define C_VESTID @"500135"
+//
+//#define C_CHANNELID @"33"
+//#define C_CHANNEL_ID @"33"
 
 
 #define C_kZALO_SDK_APP_ID @"271573910171749274"
@@ -64,7 +65,7 @@
 #define C_E_FUNCTION @"function"
 #define C_E_WKWEBVIEW @"Webview"
 
-#define C_VS = @"0.1.0"
+#define C_VS = @"0.1.1"
 
 #define C_isIphoneX ({\
 BOOL isPhoneX = NO;\

@@ -13,42 +13,42 @@
 @implementation A_AFNetworkingClient
 
 
--(NSString *)B_getErrorString:(NSError *)error
+-(NSString *)B_getErrorString:(NSError *)C_error
 {
-    NSString *strError;
-    NSInteger urlErrorCode = -1009;
-    if (error.code == urlErrorCode) {
-        strError = @"请检查网络连接是否正常！";
+    NSString *C_strError;
+    NSInteger C_urlErrorCode = -1009;
+    if (C_error.code == C_urlErrorCode) {
+        C_strError = @"请检查网络连接是否正常！";
     }
-    else if(error.code == -1001)
+    else if(C_error.code == -1001)
     {
-        strError = @"网络连接超时";
+        C_strError = @"网络连接超时";
     }
-    else if(error.code ==-1004)
+    else if(C_error.code ==-1004)
     {
-        strError = @"请检查网络连接是否正常！";
+        C_strError = @"请检查网络连接是否正常！";
     }
     else
     {
-        strError = [NSString stringWithFormat:@"网络访问出现异常，错误号：%ld",(long)error.code];
+        C_strError = [NSString stringWithFormat:@"网络访问出现异常，错误号：%ld",(long)C_error.code];
     }
-    return strError;
+    return C_strError;
 }
 
 // post
-+(void)B_postWithPath:(NSString *)path WithParams:(NSDictionary *)params withCallBack:(HDCallBack)myCallback{
-    NSString *fullUrl = path;
++(void)B_postWithPath:(NSString *)C_path WithParams:(NSDictionary *)C_params withCallBack:(HDCallBack)C_myCallback{
+    NSString *C_fullUrl = C_path;
     AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
     C_manager.requestSerializer.timeoutInterval = 10;
     [C_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [A_AFNetworkingClient setHeader:C_manager fullUrl:fullUrl];
+    [A_AFNetworkingClient setHeader:C_manager fullUrl:C_fullUrl];
     [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [C_manager POST:fullUrl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    [C_manager POST:C_fullUrl parameters:C_params progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        myCallback(dic);
+        NSDictionary *C_dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        C_myCallback(C_dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        myCallback(error);
+        C_myCallback(error);
     }];
 }
 
@@ -56,16 +56,16 @@
 +(void)B_getWithPath:(NSString *)C_path withCallBack:(HDCallBack)C_myCallback
 {
     NSString *C_fullUrl = C_path;
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 20;
+    AFHTTPSessionManager *C_manager = [AFHTTPSessionManager manager];
+    C_manager.requestSerializer.timeoutInterval = 20;
 //    [AFNetworkingClient setHeader:manager fullUrl:fullUrl];
 //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull DLProgress) {
+    [C_manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
+    [C_manager GET:C_fullUrl parameters:nil progress:^(NSProgress * _Nonnull DLProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        C_myCallback(dic);
+        NSDictionary *C_dic = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        C_myCallback(C_dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         C_myCallback(error);
     }];
