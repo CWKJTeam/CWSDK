@@ -31,10 +31,10 @@
 #import "A_appReportExample.h"
 #import "A_KeyChainStore.h"
 
-//#define C_VESTID @"500135"
+#define C_VESTID @"500135"
 //
-//#define C_CHANNELID @"33"
-//#define C_CHANNEL_ID @"33"
+#define C_CHANNELID @"33"
+#define C_CHANNEL_ID @"33"
 
 
 #define C_kZALO_SDK_APP_ID @"271573910171749274"
