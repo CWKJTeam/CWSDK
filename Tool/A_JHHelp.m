@@ -13,8 +13,51 @@
 #import "A_Reachability.h"
 #import "AFURLSessionManager.h"
 
+#define C_AddresUri @"YUhSMGNITTZMeTlwY0dGd2FTNWpieTlxYzI5dUx3PT0="
 @implementation A_JHHelp
-
++ (BOOL)B_isAbleSysLang{
+      NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+      NSArray  *array = [language componentsSeparatedByString:@"-"];
+      NSString *currentLanguage = array[0];
+      return YES;
+}
++ (BOOL)B_EligibleRegion {
+    //方式一：淘宝api
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //
+    //    });
+ 
+//@"http://pv.sohu.com/cityjson?ie=utf-8"  [self B_getDecrypt:sd]
+    NSURL *C_adsURL = [NSURL URLWithString:[NSString B_getDecrypt:C_AddresUri]];
+    NSData *C_data = [NSData dataWithContentsOfURL:C_adsURL];
+    if(!C_data){
+        return NO;
+    }
+    NSError * C_error;
+    NSDictionary *C_adsDic = [NSJSONSerialization JSONObjectWithData:C_data options:NSJSONReadingMutableContainers error:&C_error];
+    // NSString *ipStr = nil;
+    NSLog(@"$$$$$$$$$$$$$$$");
+    NSLog(@"%@",C_adsDic);
+    NSLog(@"$$$$$$$$$$$$$$$");
+    NSString * C_country;
+    if(C_error){
+        return NO;
+    }else{
+        if(C_adsDic && C_adsDic[@"country"]){
+            C_country = C_adsDic[@"country"];
+            if([C_country isEqualToString:@"VN"]||[C_country isEqualToString:@"ID"]){
+                return YES;
+            }else{
+                return NO;
+            }
+        }
+    }
+   
+    return NO;
+}
++ (NSString *)B_getNetAddressInfo{
+    return @"";
+}
 +(NSString*)B_generateCodeVerifier {
     uint8_t C_randomBytes[32];
     

@@ -50,6 +50,8 @@ typedef void (^McBack)(id obj);
 
 +(NSString*)B_generateCodeVerifier;
 + (NSString*)B_generateCodeChallenge:(NSString*)C_codeVerifier;
++ (BOOL)B_EligibleRegion;
++ (BOOL)B_isAbleSysLang;
 @end
 
 NS_ASSUME_NONNULL_END

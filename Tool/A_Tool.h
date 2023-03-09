@@ -65,7 +65,7 @@
 #define C_E_FUNCTION @"function"
 #define C_E_WKWEBVIEW @"Webview"
 
-#define C_VS = @"0.1.1"
+#define C_VS = @"0.1.5"
 
 #define C_isIphoneX ({\
 BOOL isPhoneX = NO;\
